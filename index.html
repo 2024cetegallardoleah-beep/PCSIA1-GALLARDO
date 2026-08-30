@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Smart Waste Collection Report System (SWCRS)</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <style>
     * {
@@ -18,26 +19,27 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      background-image: linear-gradient(rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0.88)), url('ley.jpg');
+      background: linear-gradient(rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.75)), 
+                  url('ley.jpg'),
+                  #111827;
       background-size: cover;
       background-position: center;
-      background-repeat: no-repeat;
       background-attachment: fixed;
+      background-repeat: no-repeat;
       padding: 2rem 1rem;
     }
 
-    /* Header Banner Styling */
     header {
       text-align: center;
       margin-bottom: 2rem;
-      max-width: 850px;
+      max-width: 900px;
       width: 100%;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
     }
 
     header h1 {
-      font-size: clamp(1.4rem, 4vw, 2.4rem);
+      font-size: clamp(1.4rem, 4vw, 2.2rem);
       font-weight: 900;
       color: #ffffff;
       letter-spacing: 0.5px;
@@ -51,77 +53,67 @@
       background-color: #22c55e;
       margin: 0.8rem auto;
       border-radius: 2px;
+      box-shadow: 0 0 10px #22c55e;
     }
 
     .header-subtitle {
-      font-size: clamp(0.9rem, 2vw, 1.15rem);
-      color: #e5e7eb;
-      font-weight: 400;
-      letter-spacing: 0.3px;
+      font-size: clamp(0.85rem, 2vw, 1.05rem);
+      color: #f3f4f6;
+      font-weight: 500;
     }
 
-    /* Main Container Wrappers */
     .main-wrapper {
       width: 100%;
-      max-width: 850px;
+      max-width: 950px;
       display: flex;
       justify-content: center;
     }
 
+    .auth-card, .dashboard-card {
+      background: rgba(17, 24, 39, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 24px;
+      padding: 2.2rem 2rem;
+      width: 100%;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.85);
+    }
+
     .auth-card {
-      background: rgba(13, 15, 18, 0.92);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 24px;
-      padding: 2.5rem 2rem;
-      width: 100%;
       max-width: 440px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
     }
 
-    .dashboard-card-container {
-      background: rgba(13, 15, 18, 0.92);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 24px;
-      padding: 2.5rem 2rem;
-      width: 100%;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-    }
-
-    .auth, .area {
+    .section-area {
       display: none;
     }
 
-    .auth.active, .area.active {
+    .section-area.active {
       display: block;
     }
 
-    /* Form Styles */
     .form-header {
       text-align: center;
       margin-bottom: 1.8rem;
     }
 
     .form-header h2 {
-      font-size: 2.1rem;
+      font-size: 1.8rem;
       font-weight: 800;
       color: #ffffff;
       margin-bottom: 0.3rem;
     }
 
-    .form-header .welcome-user {
-      font-size: 1.3rem;
+    .form-header .user-badge {
+      font-size: 1.1rem;
       font-weight: 700;
       color: #22c55e;
       margin-bottom: 0.4rem;
     }
 
     .form-header p {
-      color: #d1d5db;
-      font-size: 0.95rem;
+      color: #9ca3af;
+      font-size: 0.9rem;
     }
 
     .form-group {
@@ -130,124 +122,131 @@
       flex-direction: column;
     }
 
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
     label {
-      font-size: 0.95rem;
+      font-size: 0.88rem;
       font-weight: 700;
-      color: #ffffff;
+      color: #d1d5db;
       margin-bottom: 0.4rem;
     }
 
-    input, select {
+    input, select, textarea {
       width: 100%;
-      padding: 0.85rem 1rem;
+      padding: 0.8rem 1rem;
       border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.18);
       background-color: rgba(255, 255, 255, 0.08);
       color: #ffffff;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       outline: none;
+      font-family: inherit;
     }
 
-    input option, select option {
-      background-color: #1e293b;
+    select option {
+      background-color: #1f2937;
       color: #ffffff;
     }
 
-    /* Standard Form Buttons */
+    textarea {
+      resize: vertical;
+      min-height: 75px;
+    }
+
     .btn-primary {
       width: 100%;
-      padding: 0.9rem;
+      padding: 0.85rem;
       border-radius: 35px;
       border: none;
       background-color: #22c55e;
       color: #ffffff;
-      font-size: 1.05rem;
+      font-size: 1rem;
       font-weight: 700;
       cursor: pointer;
       margin-top: 0.6rem;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #16a34a;
+      transform: translateY(-1px);
     }
 
     .btn-secondary {
       width: 100%;
-      padding: 0.9rem;
+      padding: 0.85rem;
       border-radius: 35px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      background-color: #2c3238;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background-color: rgba(55, 65, 81, 0.8);
       color: #ffffff;
-      font-size: 1.05rem;
+      font-size: 1rem;
       font-weight: 700;
       cursor: pointer;
       margin-top: 0.7rem;
+      transition: background-color 0.2s ease;
     }
 
-    /* Resident Dashboard Menu Grid */
+    .btn-secondary:hover {
+      background-color: rgba(75, 85, 99, 0.9);
+    }
+
+    .btn-action {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.75rem;
+      border-radius: 6px;
+      border: none;
+      background-color: #22c55e;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-action:hover {
+      background-color: #16a34a;
+    }
+
     .menu-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
-      margin-top: 1.8rem;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
     }
 
-    /* Menu Buttons Styling */
     .menu-btn {
-      width: 100%;
-      padding: 1.1rem 1rem;
-      border-radius: 14px;
+      padding: 1rem;
+      border-radius: 12px;
       border: none;
-      font-size: 1.05rem;
-      font-weight: 800;
+      font-size: 0.95rem;
+      font-weight: 700;
       color: #ffffff;
       cursor: pointer;
       text-align: center;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
     .menu-btn:hover {
       transform: translateY(-2px);
     }
 
-    .btn-menu-green {
-      background-color: #22c55e;
-      box-shadow: 0 0 18px rgba(34, 197, 94, 0.45);
-    }
+    .btn-green { background-color: #22c55e; box-shadow: 0 0 15px rgba(34, 197, 94, 0.3); }
+    .btn-blue { background-color: #0ea5e9; box-shadow: 0 0 15px rgba(14, 165, 233, 0.3); }
+    .btn-purple { background-color: #8b5cf6; box-shadow: 0 0 15px rgba(139, 92, 246, 0.3); }
+    .btn-orange { background-color: #f97316; box-shadow: 0 0 15px rgba(249, 115, 22, 0.3); }
+    .btn-red { background-color: #dc2626; box-shadow: 0 0 15px rgba(220, 38, 38, 0.3); }
 
-    .btn-menu-green:hover {
-      background-color: #16a34a;
-      box-shadow: 0 0 25px rgba(34, 197, 94, 0.65);
-    }
-
-    .btn-menu-blue {
-      background-color: #0ea5e9;
-      box-shadow: 0 0 18px rgba(14, 165, 233, 0.45);
-    }
-
-    .btn-menu-blue:hover {
-      background-color: #0284c7;
-      box-shadow: 0 0 25px rgba(14, 165, 233, 0.65);
-    }
-
-    .btn-menu-red {
-      background-color: #dc2626;
-      box-shadow: 0 0 18px rgba(220, 38, 38, 0.45);
-    }
-
-    .btn-menu-red:hover {
-      background-color: #b91c1c;
-      box-shadow: 0 0 25px rgba(220, 38, 38, 0.65);
-    }
-
-    /* Dark Seamless Panel Styling */
     .view-panel {
       display: none;
-      margin-top: 2rem;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: 1.8rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       color: #ffffff;
       padding: 1.5rem;
-      border-radius: 18px;
+      border-radius: 16px;
     }
 
     .view-panel.active {
@@ -257,66 +256,74 @@
     .view-panel h3 {
       color: #22c55e;
       margin-bottom: 1rem;
-      font-size: 1.25rem;
+      font-size: 1.2rem;
     }
 
-    /* CSS Dark Tables Formatting (Task 4) */
+    .sub-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      padding: 1.2rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .sub-card h4 {
+      color: #38bdf8;
+      font-size: 1rem;
+      margin-bottom: 0.8rem;
+    }
+
     .table-wrapper {
       overflow-x: auto;
-      margin-top: 0.5rem;
+      margin-top: 0.8rem;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
       text-align: left;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: #f3f4f6;
     }
 
     table thead tr {
-      background-color: #22c55e;
-      color: #ffffff;
+      background-color: rgba(31, 41, 55, 0.9);
+      color: #22c55e;
     }
 
     table th, table td {
-      padding: 12px 14px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    table tbody tr:nth-child(even) {
-      background-color: rgba(255, 255, 255, 0.03);
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     table tbody tr:hover {
-      background-color: rgba(34, 197, 94, 0.15);
+      background-color: rgba(255, 255, 255, 0.08);
     }
 
-    /* Status Badges */
     .badge {
-      padding: 4px 10px;
-      border-radius: 12px;
-      font-size: 0.78rem;
+      padding: 3px 8px;
+      border-radius: 10px;
+      font-size: 0.75rem;
       font-weight: 700;
       display: inline-block;
     }
 
-    .badge-success { background-color: #dcfce7; color: #15803d; }
-    .badge-warning { background-color: #fef9c3; color: #a16207; }
-    .badge-info { background-color: #e0f2fe; color: #0369a1; }
-    .badge-danger { background-color: #fee2e2; color: #b91c1c; }
+    .badge-success { background-color: rgba(34, 197, 94, 0.25); color: #4ade80; border: 1px solid #22c55e; }
+    .badge-warning { background-color: rgba(234, 179, 8, 0.25); color: #facc15; border: 1px solid #eab308; }
+    .badge-info { background-color: rgba(14, 165, 233, 0.25); color: #38bdf8; border: 1px solid #0ea5e9; }
+    .badge-danger { background-color: rgba(239, 68, 68, 0.25); color: #f87171; border: 1px solid #ef4444; }
 
     footer {
       text-align: center;
-      padding: 1rem;
-      color: #888888;
+      padding: 1.5rem;
+      color: #e5e7eb;
       font-size: 0.85rem;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
     }
 
-    @media (max-width: 600px) {
-      .menu-grid {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 650px) {
+      .form-row { grid-template-columns: 1fr; }
+      .menu-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -324,51 +331,58 @@
 
   <!-- Header Banner -->
   <header>
-    <h1>Smart Waste Collection Report System (SWCRS)</h1>
+    <h1>Smart Waste Collection Report System</h1>
     <div class="header-divider"></div>
-    <p class="header-subtitle">Barangay Environment Management Office (BEMO)</p>
+    <p class="header-subtitle">Unified Operations Portal based on SWCRS Architecture</p>
   </header>
 
   <div class="main-wrapper">
-    <!-- Login Section -->
-    <section id="loginSection" class="auth-card auth active">
+
+    <!-- LOGIN SECTION -->
+    <section id="loginSection" class="auth-card section-area active">
       <div class="form-header">
-        <h2>Account Login</h2>
-        <p>Sign in to access the SWCRS system.</p>
+        <h2>System Login</h2>
+        <p>Select your system actor role to sign in.</p>
       </div>
-      <form id="loginForm">
+      <form id="loginForm" autocomplete="off">
         <div class="form-group">
-          <label for="loginRole">Role</label>
-          <select id="loginRole">
+          <label for="loginRole">System Actor Role</label>
+          <select id="loginRole" required>
+            <option value="" disabled selected>Select Role</option>
             <option value="resident">Resident</option>
-            <option value="admin">Admin</option>
+            <option value="admin">Admin / Officer</option>
+            <option value="crew">Collection Crew</option>
+            <option value="facilitator">City Facilitator</option>
           </select>
         </div>
         <div class="form-group">
-          <label for="loginUser">Username or Email</label>
-          <input type="text" id="loginUser" placeholder="Enter username or email" value="ley" required />
+          <label for="loginUser">Username or Account ID</label>
+          <input type="text" id="loginUser" placeholder="Enter Username or ID" required autocomplete="off" />
         </div>
         <div class="form-group">
           <label for="loginPass">Password</label>
-          <input type="password" id="loginPass" placeholder="Enter password" required />
+          <input type="password" id="loginPass" placeholder="Enter Password" required autocomplete="new-password" />
         </div>
         <button type="submit" class="btn-primary">Sign In</button>
-        <button type="button" id="showRegister" class="btn-secondary">Create Account</button>
+        <button type="button" id="showRegister" class="btn-secondary">Register Account</button>
       </form>
     </section>
 
-    <!-- Registration Section -->
-    <section id="registerSection" class="auth-card auth">
+    <!-- REGISTER SECTION -->
+    <section id="registerSection" class="auth-card section-area">
       <div class="form-header">
-        <h2>Account Registration</h2>
-        <p>Create an account to access the SWCRS system.</p>
+        <h2>Register Account</h2>
+        <p>Create credentials linked to system database.</p>
       </div>
-      <form id="registerForm">
+      <form id="registerForm" autocomplete="off">
         <div class="form-group">
-          <label for="regRole">Register As</label>
-          <select id="regRole">
-            <option value="resident">Resident</option>
-            <option value="admin">Admin</option>
+          <label for="regRole">Role Registration</label>
+          <select id="regRole" required>
+            <option value="" disabled selected>Select Role</option>
+            <option value="resident">Resident Data</option>
+            <option value="admin">Admin / Officer Data</option>
+            <option value="crew">Crew Data</option>
+            <option value="facilitator">Facilitator Data</option>
           </select>
         </div>
         <div class="form-group">
@@ -376,352 +390,440 @@
           <input type="text" id="regFirstName" placeholder="Enter first name" required />
         </div>
         <div class="form-group">
+          <label for="regMiddleName">Middle Name</label>
+          <input type="text" id="regMiddleName" placeholder="Enter middle name" />
+        </div>
+        <div class="form-group">
           <label for="regLastName">Last Name</label>
           <input type="text" id="regLastName" placeholder="Enter last name" required />
         </div>
         <div class="form-group">
-          <label for="regEmail">Email</label>
+          <label for="regEmail">Email Address</label>
           <input type="email" id="regEmail" placeholder="Enter email" required />
         </div>
         <div class="form-group">
-          <label for="regPass">Password</label>
-          <input type="password" id="regPass" placeholder="Create password" required />
+          <label for="regPassword">Password</label>
+          <input type="password" id="regPassword" placeholder="Enter password" required autocomplete="new-password" />
         </div>
         <button type="submit" class="btn-primary">Create Account</button>
-        <button type="button" id="showLogin" class="btn-secondary">Back</button>
+        <button type="button" id="showLogin" class="btn-secondary">Back to Login</button>
       </form>
     </section>
 
-    <!-- Resident Dashboard Area -->
-    <section id="residentArea" class="dashboard-card-container area">
+    <!-- ACTOR 1: RESIDENTS DASHBOARD -->
+    <section id="residentArea" class="dashboard-card section-area">
       <div class="form-header">
-        <h2>Resident Dashboard</h2>
-        <p class="welcome-user">Welcome, <span id="residentDisplay">ley</span>!</p>
-        <p>Please select an option below.</p>
+        <h2>Resident Portal</h2>
+        <p class="user-badge">Actor: Resident (<span class="displayUser">Resident</span>)</p>
       </div>
 
-      <!-- Option Buttons Grid -->
       <div class="menu-grid">
-        <button class="menu-btn btn-menu-green" onclick="switchView('viewSchedule')">Collection Schedule</button>
-        <button class="menu-btn btn-menu-green" onclick="switchView('viewReports')">My Waste Reports</button>
-        <button class="menu-btn btn-menu-blue" onclick="switchView('viewSubmit')">+ Submit New Report</button>
-        <button class="menu-btn btn-menu-green" onclick="switchView('viewCrew')">Collection Crew Info</button>
-        <button class="menu-btn btn-menu-red" id="logoutResident">Logout</button>
+        <button class="menu-btn btn-green" onclick="switchPanel('resSchedule')">View Schedule</button>
+        <button class="menu-btn btn-blue" onclick="switchPanel('resBinMon')">Waste Bin Monitoring</button>
+        <button class="menu-btn btn-orange" onclick="switchPanel('resIncident')">Incident Reporting</button>
+        <button class="menu-btn btn-purple" onclick="switchPanel('resFeedback')">Feedback</button>
+        <button class="menu-btn btn-red logoutBtn">Logout</button>
       </div>
 
-      <!-- View Panel 1: Collection Schedule Table -->
-      <div id="viewSchedule" class="view-panel">
-        <h3>1. Barangay Waste Collection Schedule</h3>
+      <div id="resSchedule" class="view-panel">
+        <h3>Collection Schedule & Notifications</h3>
+        <div style="background: rgba(14, 165, 233, 0.2); border: 1px solid #0ea5e9; padding: 0.8rem; border-radius: 8px; margin-bottom: 1rem;">
+          <strong>Notification:</strong> Biodegradable collection pickup in Zone 1 tomorrow at 8:00 AM.
+        </div>
         <div class="table-wrapper">
           <table>
             <thead>
-              <tr>
-                <th>Schedule ID</th>
-                <th>Barangay Zone</th>
-                <th>Waste Category</th>
-                <th>Pickup Date & Time</th>
-                <th>Status</th>
-              </tr>
+              <tr><th>Zone</th><th>Category</th><th>Schedule Date</th><th>Status</th></tr>
             </thead>
             <tbody>
-              <tr>
-                <td>SCH-2026-01</td>
-                <td>Zone 1 - North Sector</td>
-                <td>Biodegradable (Organic)</td>
-                <td>Aug 26, 2026 | 08:00 AM</td>
-                <td><span class="badge badge-warning">In Progress</span></td>
-              </tr>
-              <tr>
-                <td>SCH-2026-02</td>
-                <td>Zone 2 - Central Market</td>
-                <td>Non-Biodegradable (Dry)</td>
-                <td>Aug 27, 2026 | 09:30 AM</td>
-                <td><span class="badge badge-info">Scheduled</span></td>
-              </tr>
-              <tr>
-                <td>SCH-2026-03</td>
-                <td>Zone 3 - South Residential</td>
-                <td>Recyclables (Plastics/Glass)</td>
-                <td>Aug 28, 2026 | 07:00 AM</td>
-                <td><span class="badge badge-info">Scheduled</span></td>
-              </tr>
-              <tr>
-                <td>SCH-2026-04</td>
-                <td>Zone 4 - Industrial Park</td>
-                <td>Hazardous / E-Waste</td>
-                <td>Aug 29, 2026 | 01:00 PM</td>
-                <td><span class="badge badge-info">Scheduled</span></td>
-              </tr>
-              <tr>
-                <td>SCH-2026-05</td>
-                <td>Zone 1 - North Sector</td>
-                <td>Bulk Household Waste</td>
-                <td>Aug 25, 2026 | 10:00 AM</td>
-                <td><span class="badge badge-success">Completed</span></td>
-              </tr>
+              <tr><td>Zone 1 - North</td><td>Biodegradable</td><td>Aug 31, 2026 | 08:00 AM</td><td><span class="badge badge-info">Scheduled</span></td></tr>
+              <tr><td>Zone 2 - Central</td><td>Recyclables</td><td>Sep 01, 2026 | 09:00 AM</td><td><span class="badge badge-info">Scheduled</span></td></tr>
             </tbody>
           </table>
         </div>
       </div>
 
-      <!-- View Panel 2: My Waste Reports Table -->
-      <div id="viewReports" class="view-panel">
-        <h3>2. My Submitted Incident Reports</h3>
+      <div id="resBinMon" class="view-panel">
+        <h3>Waste Bin Monitoring (Nearby Public Bins)</h3>
         <div class="table-wrapper">
           <table>
-            <thead>
-              <tr>
-                <th>Report ID</th>
-                <th>Location / Landmark</th>
-                <th>Issue Category</th>
-                <th>Date Filed</th>
-                <th>Action Status</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Bin ID</th><th>Location</th><th>Fill Level</th><th>Status</th></tr></thead>
             <tbody>
-              <tr>
-                <td>REP-801</td>
-                <td>Corner 4th St. & Main Ave</td>
-                <td>Overflowing Communal Bin</td>
-                <td>Aug 25, 2026</td>
-                <td><span class="badge badge-success">Resolved</span></td>
-              </tr>
-              <tr>
-                <td>REP-802</td>
-                <td>Near Barangay Health Center</td>
-                <td>Uncollected Commercial Trash</td>
-                <td>Aug 26, 2026</td>
-                <td><span class="badge badge-warning">Under Review</span></td>
-              </tr>
-              <tr>
-                <td>REP-803</td>
-                <td>Riverbank Alley 2</td>
-                <td>Illegal Dumping Incident</td>
-                <td>Aug 26, 2026</td>
-                <td><span class="badge badge-danger">High Priority</span></td>
-              </tr>
-              <tr>
-                <td>REP-804</td>
-                <td>Block 12 Lot 5, Subd. A</td>
-                <td>Missed Household Pickup</td>
-                <td>Aug 24, 2026</td>
-                <td><span class="badge badge-success">Resolved</span></td>
-              </tr>
-              <tr>
-                <td>REP-805</td>
-                <td>Public Park Entrance</td>
-                <td>Damaged Recycling Bin</td>
-                <td>Aug 23, 2026</td>
-                <td><span class="badge badge-info">Scheduled Fix</span></td>
-              </tr>
+              <tr><td>BIN-101</td><td>Main Plaza</td><td>85% Full</td><td><span class="badge badge-warning">Near Capacity</span></td></tr>
+              <tr><td>BIN-102</td><td>Community Park</td><td>40% Full</td><td><span class="badge badge-success">Normal</span></td></tr>
             </tbody>
           </table>
         </div>
       </div>
 
-      <!-- View Panel 3: Submit New Report Form -->
-      <div id="viewSubmit" class="view-panel">
-        <h3>+ File a Waste Incident Report</h3>
-        <form id="newReportForm" style="margin-top: 1rem;">
+      <div id="resIncident" class="view-panel">
+        <h3>Incident Reporting (Submit Incident)</h3>
+        <form id="resReportForm" class="sub-card">
           <div class="form-group">
-            <label for="repLocation">Incident Location</label>
-            <input type="text" id="repLocation" placeholder="Enter street or landmark" required />
+            <label>Location / Landmark</label>
+            <input type="text" id="resIncLoc" placeholder="Corner 4th St." required />
           </div>
           <div class="form-group">
-            <label for="repType">Issue Category</label>
-            <select id="repType">
-              <option value="Overflowing Bin">Overflowing Communal Bin</option>
-              <option value="Uncollected Waste">Uncollected Garbage</option>
-              <option value="Illegal Dumping">Illegal Dumping Site</option>
-              <option value="Damaged Bin">Damaged Public Bin</option>
+            <label>Incident Details</label>
+            <textarea id="resIncDetails" placeholder="Overflowing bin, uncollected waste..." required></textarea>
+          </div>
+          <button type="submit" class="btn-primary">Submit Incident Report</button>
+        </form>
+        <h4>My Submitted Incidents</h4>
+        <div class="table-wrapper">
+          <table id="resIncidentTable">
+            <thead><tr><th>Report ID</th><th>Location</th><th>Details</th><th>Status</th></tr></thead>
+            <tbody id="resIncidentBody">
+              <tr><td>REP-801</td><td>Main Street</td><td>Uncollected Trash</td><td><span class="badge badge-warning">Under Review</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="resFeedback" class="view-panel">
+        <h3>Submit Service Feedback</h3>
+        <form id="feedbackForm" class="sub-card">
+          <div class="form-group">
+            <label>Rating (1-5)</label>
+            <select id="fbRating"><option>5 - Excellent</option><option>4 - Good</option><option>3 - Average</option></select>
+          </div>
+          <div class="form-group">
+            <label>Comments</label>
+            <textarea id="fbComment" placeholder="Collection was on time..."></textarea>
+          </div>
+          <button type="submit" class="btn-primary">Send Feedback</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ACTOR 2: ADMIN / OFFICER DASHBOARD -->
+    <section id="adminArea" class="dashboard-card section-area">
+      <div class="form-header">
+        <h2>Admin / Officer Management Dashboard</h2>
+        <p class="user-badge">Actor: Admin / Officer (<span class="displayUser">Admin_Officer</span>)</p>
+      </div>
+
+      <div class="menu-grid">
+        <button class="menu-btn btn-green" onclick="switchPanel('admAnalytics')">Analytics</button>
+        <button class="menu-btn btn-blue" onclick="switchPanel('admReports')">View / Manage Reports</button>
+        <button class="menu-btn btn-purple" onclick="switchPanel('admCrewTrack')">Crew Performance</button>
+        <button class="menu-btn btn-orange" onclick="switchPanel('admAuditExport')">Audit Trail & Export</button>
+        <button class="menu-btn btn-red logoutBtn">Logout</button>
+      </div>
+
+      <div id="admAnalytics" class="view-panel">
+        <h3>System Analytics</h3>
+        <canvas id="adminAnalyticsChart" style="max-height: 250px;"></canvas>
+      </div>
+
+      <div id="admReports" class="view-panel">
+        <h3>Resident Incident Reports & Evaluation</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead><tr><th>Report ID</th><th>Resident</th><th>Location</th><th>Details</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody id="adminReportBody">
+              <tr id="adm-row-REP-801">
+                <td>REP-801</td><td>User_01</td><td>Main Street</td><td>Uncollected Trash</td>
+                <td class="status-cell"><span class="badge badge-warning">Under Review</span></td>
+                <td><button class="btn-action" onclick="resolveAdminReport('REP-801')">Resolve</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="admCrewTrack" class="view-panel">
+        <h3>Crew Performance Tracking</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead><tr><th>Crew Team</th><th>Assigned Zone</th><th>Tasks Completed</th><th>Performance Score</th></tr></thead>
+            <tbody>
+              <tr><td>Crew Alpha</td><td>Zone 1</td><td>14 / 15 Pickups</td><td><span class="badge badge-success">93% High</span></td></tr>
+              <tr><td>Crew Bravo</td><td>Zone 2</td><td>10 / 12 Pickups</td><td><span class="badge badge-info">83% Satisfactory</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="admAuditExport" class="view-panel">
+        <h3>Audit Trail & Data Export</h3>
+        <p style="font-size: 0.85rem; color: #9ca3af; margin-bottom: 0.8rem;">Log of administrative actions and data export operations.</p>
+        <div class="table-wrapper">
+          <table>
+            <thead><tr><th>Timestamp</th><th>Actor</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td>2026-08-30 09:15</td><td>Admin_Officer</td><td>Resolved Incident REP-801</td></tr>
+              <tr><td>2026-08-30 08:30</td><td>Admin_Officer</td><td>Generated Monthly Analytics Report</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <button class="btn-primary" onclick="alert('Exporting System Data to CSV... Download initiated.')" style="margin-top: 1rem;">Export Data (CSV)</button>
+      </div>
+    </section>
+
+    <!-- ACTOR 3: COLLECTION CREW DASHBOARD -->
+    <section id="crewArea" class="dashboard-card section-area">
+      <div class="form-header">
+        <h2>Collection Crew Portal</h2>
+        <p class="user-badge">Actor: Crew (<span class="displayUser">Crew_Unit_01</span>)</p>
+      </div>
+
+      <div class="menu-grid">
+        <button class="menu-btn btn-green" onclick="switchPanel('crewRoute')">Route Optimization</button>
+        <button class="menu-btn btn-blue" onclick="switchPanel('crewSegreg')">Segregation Compliance</button>
+        <button class="menu-btn btn-orange" onclick="switchPanel('crewDisposal')">Manage Disposal Data</button>
+        <button class="menu-btn btn-red logoutBtn">Logout</button>
+      </div>
+
+      <div id="crewRoute" class="view-panel">
+        <h3>Optimized Collection Route</h3>
+        <div class="sub-card">
+          <p><strong>Current Active Route:</strong> Route Alpha-4 (Zone 1 Sector)</p>
+          <p style="font-size: 0.85rem; color: #9ca3af; margin-top: 0.3rem;">Stop 1: Central Park Bin &rarr; Stop 2: Market Hub &rarr; Stop 3: North Station</p>
+        </div>
+      </div>
+
+      <div id="crewSegreg" class="view-panel">
+        <h3>Segregation Compliance Check</h3>
+        <form id="crewSegForm" class="sub-card">
+          <div class="form-group">
+            <label>Household / Location Tag</label>
+            <input type="text" id="segLoc" placeholder="e.g., Household #402" required />
+          </div>
+          <div class="form-group">
+            <label>Compliance Status</label>
+            <select id="segStatus">
+              <option value="Compliant">Fully Compliant</option>
+              <option value="Non-Compliant">Non-Compliant (Mixed Waste)</option>
             </select>
           </div>
-          <button type="submit" class="btn-primary">Submit Report</button>
+          <button type="submit" class="btn-primary">Log Compliance Check</button>
         </form>
       </div>
 
-      <!-- View Panel 4: Collection Crew Info Table -->
-      <div id="viewCrew" class="view-panel">
-        <h3>3. Assigned Collection Crew & Team Info</h3>
+      <div id="crewDisposal" class="view-panel">
+        <h3>Manage Disposal Data & Submit Report</h3>
+        <form id="disposalForm" class="sub-card">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Transported Weight (kg)</label>
+              <input type="number" id="dispWeight" placeholder="450" required />
+            </div>
+            <div class="form-group">
+              <label>Disposal Site</label>
+              <input type="text" id="dispSite" placeholder="City Central Facility" required />
+            </div>
+          </div>
+          <button type="submit" class="btn-primary">Submit Disposal Report</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ACTOR 4: CITY FACILITATOR DASHBOARD -->
+    <section id="facilitatorArea" class="dashboard-card section-area">
+      <div class="form-header">
+        <h2>City Facilitator Dashboard</h2>
+        <p class="user-badge">Actor: City Facilitator (<span class="displayUser">Facilitator_City</span>)</p>
+      </div>
+
+      <div class="menu-grid">
+        <button class="menu-btn btn-green" onclick="switchPanel('facSegMon')">Segregation Monitoring</button>
+        <button class="menu-btn btn-blue" onclick="switchPanel('facDisposalData')">Submitted Disposal Data</button>
+        <button class="menu-btn btn-purple" onclick="switchPanel('facEvalReport')">Evaluation & Reports</button>
+        <button class="menu-btn btn-red logoutBtn">Logout</button>
+      </div>
+
+      <div id="facSegMon" class="view-panel">
+        <h3>Citywide Segregation Compliance Monitoring</h3>
         <div class="table-wrapper">
           <table>
-            <thead>
-              <tr>
-                <th>Crew ID</th>
-                <th>Team Leader</th>
-                <th>Vehicle Unit</th>
-                <th>Assigned Zone</th>
-                <th>Contact Number</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Zone</th><th>Compliance Rate</th><th>Overall Status</th></tr></thead>
             <tbody>
-              <tr>
-                <td>CREW-101</td>
-                <td>Officer R. Ramos</td>
-                <td>Compactor Truck Alpha</td>
-                <td>Zone 1 - North Sector</td>
-                <td>+63 917 555 0192</td>
-              </tr>
-              <tr>
-                <td>CREW-102</td>
-                <td>Driver M. Torres</td>
-                <td>Compactor Truck Bravo</td>
-                <td>Zone 2 - Central Market</td>
-                <td>+63 918 555 0143</td>
-              </tr>
-              <tr>
-                <td>CREW-103</td>
-                <td>Driver J. Aquino</td>
-                <td>Mini Hauler Truck 01</td>
-                <td>Zone 3 - South Residential</td>
-                <td>+63 919 555 0188</td>
-              </tr>
-              <tr>
-                <td>CREW-104</td>
-                <td>Officer S. Mendoza</td>
-                <td>Heavy Dump Truck 04</td>
-                <td>Zone 4 - Industrial Park</td>
-                <td>+63 920 555 0177</td>
-              </tr>
-              <tr>
-                <td>CREW-105</td>
-                <td>Driver L. Fernandez</td>
-                <td>Mini Hauler Truck 02</td>
-                <td>Zone 1 - Alleyways</td>
-                <td>+63 921 555 0121</td>
-              </tr>
+              <tr><td>Zone 1 - North Sector</td><td>88%</td><td><span class="badge badge-success">High Compliance</span></td></tr>
+              <tr><td>Zone 2 - Central Market</td><td>65%</td><td><span class="badge badge-warning">Needs Inspection</span></td></tr>
             </tbody>
           </table>
         </div>
       </div>
+
+      <div id="facDisposalData" class="view-panel">
+        <h3>Submitted Disposal Data Overview</h3>
+        <div class="table-wrapper">
+          <table id="facDisposalTable">
+            <thead><tr><th>Crew Unit</th><th>Disposal Site</th><th>Weight (kg)</th><th>Date Submitted</th></tr></thead>
+            <tbody id="facDisposalBody">
+              <tr><td>Crew Alpha</td><td>Central Landfill Facility</td><td>1,240 kg</td><td>Aug 30, 2026</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="facEvalReport" class="view-panel">
+        <h3>Citywide Waste Management Evaluation</h3>
+        <div class="sub-card">
+          <h4>City Environmental Impact Score: 91/100</h4>
+          <p style="font-size: 0.85rem; color: #d1d5db;">Overall efficiency across collection schedules, incident mitigation, and segregation compliance.</p>
+        </div>
+      </div>
     </section>
 
-    <!-- Admin Area -->
-    <section id="adminArea" class="dashboard-card-container area">
-      <div class="form-header">
-        <h2>Welcome, Admin!</h2>
-        <p>BEMO Management Dashboard</p>
-      </div>
-      <div style="background: rgba(255, 255, 255, 0.05); color: #fff; padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1);">
-        <h3 style="color: #22c55e; margin-bottom: 0.5rem;">Collection Statistics</h3>
-        <canvas id="statsChart"></canvas>
-      </div>
-      <button id="logoutAdmin" class="btn-secondary" style="margin-top: 1.5rem;">Logout</button>
-    </section>
   </div>
 
   <footer>
-    <p>© 2026 Smart Waste System | Designed by Ley</p>
+    <p>© 2026 Smart Waste Collection Report System (SWCRS)</p>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
-    const loginSection = document.getElementById("loginSection");
-    const registerSection = document.getElementById("registerSection");
-    const residentArea = document.getElementById("residentArea");
-    const adminArea = document.getElementById("adminArea");
+    const loginSection = document.getElementById('loginSection');
+    const registerSection = document.getElementById('registerSection');
+    const residentArea = document.getElementById('residentArea');
+    const adminArea = document.getElementById('adminArea');
+    const crewArea = document.getElementById('crewArea');
+    const facilitatorArea = document.getElementById('facilitatorArea');
 
-    const showRegister = document.getElementById("showRegister");
-    const showLogin = document.getElementById("showLogin");
-    const logoutResident = document.getElementById("logoutResident");
-    const logoutAdmin = document.getElementById("logoutAdmin");
+    const showRegister = document.getElementById('showRegister');
+    const showLogin = document.getElementById('showLogin');
+    const logoutBtns = document.querySelectorAll('.logoutBtn');
 
-    let statsChartInstance = null;
+    let adminChartInstance = null;
+    let repCounter = 802;
 
-    showRegister.addEventListener("click", () => {
-      loginSection.classList.remove("active");
-      registerSection.classList.add("active");
+    showRegister.addEventListener('click', () => {
+      loginSection.classList.remove('active');
+      registerSection.classList.add('active');
     });
 
-    showLogin.addEventListener("click", () => {
-      registerSection.classList.remove("active");
-      loginSection.classList.add("active");
+    showLogin.addEventListener('click', () => {
+      registerSection.classList.remove('active');
+      loginSection.classList.add('active');
     });
 
-    // Login Form Handler
-    document.getElementById("loginForm").addEventListener("submit", (e) => {
+    document.getElementById('loginForm').addEventListener('submit', (e) => {
       e.preventDefault();
-      const role = document.getElementById("loginRole").value;
-      const username = document.getElementById("loginUser").value;
+      const role = document.getElementById('loginRole').value;
+      const user = document.getElementById('loginUser').value;
 
-      if (username) {
-        document.getElementById("residentDisplay").textContent = username;
+      document.querySelectorAll('.displayUser').forEach(el => el.textContent = user);
+      loginSection.classList.remove('active');
+
+      if (role === 'resident') {
+        residentArea.classList.add('active');
+      } else if (role === 'admin') {
+        adminArea.classList.add('active');
+        initAdminChart();
+      } else if (role === 'crew') {
+        crewArea.classList.add('active');
+      } else if (role === 'facilitator') {
+        facilitatorArea.classList.add('active');
       }
-
-      loginSection.classList.remove("active");
-
-      if (role === "resident") {
-        residentArea.classList.add("active");
-      } else {
-        adminArea.classList.add("active");
-        renderChart();
-      }
+      
+      document.getElementById('loginForm').reset();
     });
 
-    // Registration Handler
-    document.getElementById("registerForm").addEventListener("submit", (e) => {
+    document.getElementById('registerForm').addEventListener('submit', (e) => {
       e.preventDefault();
-      alert("Registration successful! Please sign in.");
-      registerSection.classList.remove("active");
-      loginSection.classList.add("active");
+      alert('Registration data saved to system directory! Please sign in.');
+      registerSection.classList.remove('active');
+      loginSection.classList.add('active');
+      document.getElementById('registerForm').reset();
     });
 
-    // Logout Handlers
-    logoutResident.addEventListener("click", () => {
-      residentArea.classList.remove("active");
-      loginSection.classList.add("active");
-      // Hide active panel when logging out
-      const panels = document.querySelectorAll('.view-panel');
-      panels.forEach(panel => panel.classList.remove('active'));
+    logoutBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.section-area').forEach(sec => sec.classList.remove('active'));
+        document.querySelectorAll('.view-panel').forEach(panel => panel.classList.remove('active'));
+        loginSection.classList.add('active');
+      });
     });
 
-    logoutAdmin.addEventListener("click", () => {
-      adminArea.classList.remove("active");
-      loginSection.classList.add("active");
-    });
-
-    // Toggle Table Panels when clicking a button
-    function switchView(viewId) {
-      const selectedPanel = document.getElementById(viewId);
-      const isAlreadyActive = selectedPanel.classList.contains('active');
-
-      const panels = document.querySelectorAll('.view-panel');
-      panels.forEach(panel => panel.classList.remove('active'));
-
-      // If clicked again, toggle hide; otherwise show
-      if (!isAlreadyActive) {
-        selectedPanel.classList.add('active');
+    function switchPanel(panelId) {
+      const panel = document.getElementById(panelId);
+      const isVisible = panel.classList.contains('active');
+      const container = panel.closest('.dashboard-card');
+      
+      container.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active'));
+      if (!isVisible) {
+        panel.classList.add('active');
       }
     }
 
-    // Submit Report Event
-    document.getElementById("newReportForm").addEventListener("submit", (e) => {
+    document.getElementById('resReportForm').addEventListener('submit', (e) => {
       e.preventDefault();
-      alert("Report submitted successfully!");
-      switchView('viewReports');
+      const loc = document.getElementById('resIncLoc').value;
+      const details = document.getElementById('resIncDetails').value;
+      const repId = `REP-${repCounter++}`;
+      const user = document.querySelector('#residentArea .displayUser').textContent;
+
+      const resBody = document.getElementById('resIncidentBody');
+      const resRow = document.createElement('tr');
+      resRow.id = `res-row-${repId}`;
+      resRow.innerHTML = `<td>${repId}</td><td>${loc}</td><td>${details}</td><td class="status-cell"><span class="badge badge-warning">Under Review</span></td>`;
+      resBody.prepend(resRow);
+
+      const admBody = document.getElementById('adminReportBody');
+      const admRow = document.createElement('tr');
+      admRow.id = `adm-row-${repId}`;
+      admRow.innerHTML = `<td>${repId}</td><td>${user}</td><td>${loc}</td><td>${details}</td><td class="status-cell"><span class="badge badge-warning">Under Review</span></td><td><button class="btn-action" onclick="resolveAdminReport('${repId}')">Resolve</button></td>`;
+      admBody.prepend(admRow);
+
+      document.getElementById('resReportForm').reset();
+      alert(`Incident Report ${repId} submitted successfully!`);
     });
 
-    // Render Chart for Admin
-    function renderChart() {
-      const ctx = document.getElementById("statsChart").getContext("2d");
-      if (statsChartInstance) {
-        statsChartInstance.destroy();
-      }
-      statsChartInstance = new Chart(ctx, {
-        type: "bar",
+    function resolveAdminReport(repId) {
+      const resRow = document.getElementById(`res-row-${repId}`);
+      const admRow = document.getElementById(`adm-row-${repId}`);
+      const badgeHTML = `<span class="badge badge-success">Resolved</span>`;
+
+      if (resRow) resRow.querySelector('.status-cell').innerHTML = badgeHTML;
+      if (admRow) admRow.querySelector('.status-cell').innerHTML = badgeHTML;
+
+      alert(`Report ${repId} marked as Resolved.`);
+    }
+
+    document.getElementById('disposalForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const weight = document.getElementById('dispWeight').value;
+      const site = document.getElementById('dispSite').value;
+      const crewUser = document.querySelector('#crewArea .displayUser').textContent;
+
+      const facBody = document.getElementById('facDisposalBody');
+      const row = document.createElement('tr');
+      row.innerHTML = `<td>${crewUser}</td><td>${site}</td><td>${weight} kg</td><td>Aug 30, 2026</td>`;
+      facBody.prepend(row);
+
+      document.getElementById('disposalForm').reset();
+      alert('Disposal Data & Transported Weight Logged Successfully!');
+    });
+
+    document.getElementById('feedbackForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Feedback successfully submitted to Admin and City Facilitator dashboard!');
+      document.getElementById('feedbackForm').reset();
+    });
+
+    document.getElementById('crewSegForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Segregation Compliance log recorded!');
+      document.getElementById('crewSegForm').reset();
+    });
+
+    function initAdminChart() {
+      const ctx = document.getElementById('adminAnalyticsChart').getContext('2d');
+      if (adminChartInstance) adminChartInstance.destroy();
+      adminChartInstance = new Chart(ctx, {
+        type: 'bar',
         data: {
-          labels: ["Daily", "Weekly", "Monthly"],
+          labels: ['Daily Collection', 'Weekly Volume', 'Monthly Target'],
           datasets: [{
-            label: "Collection Volume (kg)",
-            data: [120, 850, 3400],
-            backgroundColor: ["#22c55e", "#16a34a", "#15803d"]
+            label: 'Waste Volume (kg)',
+            data: [320, 2100, 8500],
+            backgroundColor: ['#22c55e', '#0ea5e9', '#8b5cf6']
           }]
         },
         options: {
           responsive: true,
-          scales: {
-            y: { beginAtZero: true }
-          }
+          maintainAspectRatio: false
         }
       });
     }
