@@ -259,11 +259,30 @@
       transform: translateY(-2px);
     }
 
-    .btn-green { background-color: #22c55e; box-shadow: 0 0 15px rgba(34, 197, 94, 0.3); }
-    .btn-blue { background-color: #0ea5e9; box-shadow: 0 0 15px rgba(14, 165, 233, 0.3); }
-    .btn-purple { background-color: #8b5cf6; box-shadow: 0 0 15px rgba(139, 92, 246, 0.3); }
-    .btn-orange { background-color: #f97316; box-shadow: 0 0 15px rgba(249, 115, 22, 0.3); }
-    .btn-red { background-color: #dc2626; box-shadow: 0 0 15px rgba(220, 38, 38, 0.3); }
+    .btn-green {
+      background-color: #22c55e;
+      box-shadow: 0 0 15px rgba(34, 197, 94, 0.3);
+    }
+
+    .btn-blue {
+      background-color: #0ea5e9;
+      box-shadow: 0 0 15px rgba(14, 165, 233, 0.3);
+    }
+
+    .btn-purple {
+      background-color: #8b5cf6;
+      box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+    }
+
+    .btn-orange {
+      background-color: #f97316;
+      box-shadow: 0 0 15px rgba(249, 115, 22, 0.3);
+    }
+
+    .btn-red {
+      background-color: #dc2626;
+      box-shadow: 0 0 15px rgba(220, 38, 38, 0.3);
+    }
 
     .view-panel {
       display: none;
@@ -334,10 +353,29 @@
       display: inline-block;
     }
 
-    .badge-success { background-color: rgba(34, 197, 94, 0.25); color: #4ade80; border: 1px solid #22c55e; }
-    .badge-warning { background-color: rgba(234, 179, 8, 0.25); color: #facc15; border: 1px solid #eab308; }
-    .badge-info { background-color: rgba(14, 165, 233, 0.25); color: #38bdf8; border: 1px solid #0ea5e9; }
-    .badge-danger { background-color: rgba(239, 68, 68, 0.25); color: #f87171; border: 1px solid #ef4444; }
+    .badge-success {
+      background-color: rgba(34, 197, 94, 0.25);
+      color: #4ade80;
+      border: 1px solid #22c55e;
+    }
+
+    .badge-warning {
+      background-color: rgba(234, 179, 8, 0.25);
+      color: #facc15;
+      border: 1px solid #eab308;
+    }
+
+    .badge-info {
+      background-color: rgba(14, 165, 233, 0.25);
+      color: #38bdf8;
+      border: 1px solid #0ea5e9;
+    }
+
+    .badge-danger {
+      background-color: rgba(239, 68, 68, 0.25);
+      color: #f87171;
+      border: 1px solid #ef4444;
+    }
 
     footer {
       text-align: center;
@@ -348,18 +386,26 @@
     }
 
     @media (max-width: 650px) {
-      .form-row { grid-template-columns: 1fr; }
-      .menu-grid { grid-template-columns: 1fr; }
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <!-- Header Banner -->
   <header>
     <h1>Smart Waste Collection Report System</h1>
     <div class="header-divider"></div>
-    <p class="header-subtitle">Unified Operations Portal based on SWCRS Architecture</p>
+    <p class="header-subtitle">
+      Unified Operations Portal based on SWCRS Architecture
+    </p>
   </header>
 
   <div class="main-wrapper">
@@ -370,9 +416,12 @@
         <h2>System Login</h2>
         <p>Select your system actor role to sign in.</p>
       </div>
+
       <form id="loginForm" autocomplete="off" novalidate>
+
         <div class="form-group">
           <label for="loginRole">System Actor Role</label>
+
           <select id="loginRole" required>
             <option value="" disabled selected>Select Role</option>
             <option value="resident">Resident</option>
@@ -380,32 +429,71 @@
             <option value="crew">Collection Crew</option>
             <option value="facilitator">City Facilitator</option>
           </select>
-          <span class="error-msg" id="err-loginRole">Please select a system actor role.</span>
+
+          <span class="error-msg" id="err-loginRole">
+            Please select a system actor role.
+          </span>
         </div>
+
         <div class="form-group">
           <label for="loginUser">Username or Account ID</label>
-          <input type="text" id="loginUser" placeholder="Enter Username or ID" required minlength="3" autocomplete="off" />
-          <span class="error-msg" id="err-loginUser">Username/ID must be at least 3 characters.</span>
+
+          <input
+            type="text"
+            id="loginUser"
+            placeholder="Enter Username or ID"
+            required
+            minlength="3"
+            autocomplete="off"
+          />
+
+          <span class="error-msg" id="err-loginUser">
+            Username/ID must be at least 3 characters.
+          </span>
         </div>
+
         <div class="form-group">
           <label for="loginPass">Password</label>
-          <input type="password" id="loginPass" placeholder="Enter Password" required minlength="6" autocomplete="new-password" />
-          <span class="error-msg" id="err-loginPass">Password must be at least 6 characters long.</span>
+
+          <input
+            type="password"
+            id="loginPass"
+            placeholder="Enter Password"
+            required
+            minlength="6"
+            autocomplete="new-password"
+          />
+
+          <span class="error-msg" id="err-loginPass">
+            Password must be at least 6 characters long.
+          </span>
         </div>
-        <button type="submit" class="btn-primary">Sign In</button>
-        <button type="button" id="showRegister" class="btn-secondary">Register Account</button>
+
+        <button type="submit" class="btn-primary">
+          Sign In
+        </button>
+
+        <button type="button" id="showRegister" class="btn-secondary">
+          Register Account
+        </button>
+
       </form>
     </section>
 
+
     <!-- REGISTER SECTION -->
     <section id="registerSection" class="auth-card section-area">
+
       <div class="form-header">
         <h2>Register Account</h2>
         <p>Create credentials linked to system database.</p>
       </div>
+
       <form id="registerForm" autocomplete="off" novalidate>
+
         <div class="form-group">
           <label for="regRole">Role Registration</label>
+
           <select id="regRole" required>
             <option value="" disabled selected>Select Role</option>
             <option value="resident">Resident Data</option>
@@ -413,581 +501,1893 @@
             <option value="crew">Crew Data</option>
             <option value="facilitator">Facilitator Data</option>
           </select>
-          <span class="error-msg" id="err-regRole">Please select a valid role.</span>
+
+          <span class="error-msg" id="err-regRole">
+            Please select a valid role.
+          </span>
         </div>
+
         <div class="form-group">
           <label for="regFirstName">First Name</label>
-          <input type="text" id="regFirstName" placeholder="Enter first name" required minlength="2" maxlength="30" pattern="[A-Za-z\s]+" />
-          <span class="error-msg" id="err-regFirstName">First name must contain letters only (min 2 chars).</span>
+
+          <input
+            type="text"
+            id="regFirstName"
+            placeholder="Enter first name"
+            required
+            minlength="2"
+            maxlength="30"
+            pattern="[A-Za-z\s]+"
+          />
+
+          <span class="error-msg" id="err-regFirstName">
+            First name must contain letters only (min 2 chars).
+          </span>
         </div>
+
         <div class="form-group">
           <label for="regMiddleName">Middle Name</label>
-          <input type="text" id="regMiddleName" placeholder="Enter middle name (optional)" maxlength="30" pattern="[A-Za-z\s]*" />
-          <span class="error-msg" id="err-regMiddleName">Middle name must contain letters only.</span>
+
+          <input
+            type="text"
+            id="regMiddleName"
+            placeholder="Enter middle name (optional)"
+            maxlength="30"
+            pattern="[A-Za-z\s]*"
+          />
+
+          <span class="error-msg" id="err-regMiddleName">
+            Middle name must contain letters only.
+          </span>
         </div>
+
         <div class="form-group">
           <label for="regLastName">Last Name</label>
-          <input type="text" id="regLastName" placeholder="Enter last name" required minlength="2" maxlength="30" pattern="[A-Za-z\s]+" />
-          <span class="error-msg" id="err-regLastName">Last name must contain letters only (min 2 chars).</span>
+
+          <input
+            type="text"
+            id="regLastName"
+            placeholder="Enter last name"
+            required
+            minlength="2"
+            maxlength="30"
+            pattern="[A-Za-z\s]+"
+          />
+
+          <span class="error-msg" id="err-regLastName">
+            Last name must contain letters only (min 2 chars).
+          </span>
         </div>
+
         <div class="form-group">
           <label for="regEmail">Email Address</label>
-          <input type="email" id="regEmail" placeholder="e.g. user@swcrs.gov" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
-          <span class="error-msg" id="err-regEmail">Enter a valid email address (e.g. name@domain.com).</span>
+
+          <input
+            type="email"
+            id="regEmail"
+            placeholder="e.g. user@swcrs.gov"
+            required
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+          />
+
+          <span class="error-msg" id="err-regEmail">
+            Enter a valid email address (e.g. name@domain.com).
+          </span>
         </div>
+
+        <!-- ADDRESS -->
+        <div class="form-group">
+          <label for="regStreet">Street Address</label>
+
+          <input
+            type="text"
+            id="regStreet"
+            placeholder="Street Address"
+            required
+            minlength="3"
+          />
+
+          <span class="error-msg" id="err-regStreet">
+            Street address is required.
+          </span>
+        </div>
+
+        <!-- STREET ADDRESS LINE 2 REMOVED -->
+
+        <div class="form-row">
+
+          <div class="form-group">
+            <label for="regCity">City</label>
+
+            <input
+              type="text"
+              id="regCity"
+              placeholder="City"
+              required
+              minlength="2"
+            />
+
+            <span class="error-msg" id="err-regCity">
+              City is required.
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label for="regRegion">Region</label>
+
+            <input
+              type="text"
+              id="regRegion"
+              placeholder="Region"
+              required
+              minlength="2"
+            />
+
+            <span class="error-msg" id="err-regRegion">
+              Region is required.
+            </span>
+          </div>
+
+        </div>
+
+        <div class="form-row">
+
+          <div class="form-group">
+            <label for="regPostal">Postal / Zip Code</label>
+
+            <input
+              type="text"
+              id="regPostal"
+              placeholder="Postal / Zip Code"
+              required
+              minlength="4"
+              maxlength="10"
+            />
+
+            <span class="error-msg" id="err-regPostal">
+              Postal / Zip Code is required.
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label for="regCountry">Country</label>
+
+            <select id="regCountry" required>
+              <option value="" disabled selected>Select Country</option>
+              <option value="Philippines">Philippines</option>
+              <option value="Other">Other</option>
+            </select>
+
+            <span class="error-msg" id="err-regCountry">
+              Please select a country.
+            </span>
+          </div>
+
+        </div>
+
+        <!-- PLACE / CLUSTERED PUROK -->
+        <div class="form-group">
+          <label for="regPurok">Place / Clustered Purok</label>
+
+          <select id="regPurok" required>
+
+            <option value="" disabled selected>
+              Select Place / Clustered Purok
+            </option>
+
+            <option value="Purok 25">Purok 25</option>
+            <option value="Purok 7">Purok 7</option>
+            <option value="Purok 7-A">Purok 7-A</option>
+            <option value="Purok 1">Purok 1</option>
+            <option value="Purok 1-A">Purok 1-A</option>
+            <option value="Purok 2">Purok 2</option>
+            <option value="Purok 2-A">Purok 2-A</option>
+            <option value="Purok 3">Purok 3</option>
+            <option value="Purok 3-A">Purok 3-A</option>
+            <option value="Purok 9">Purok 9</option>
+            <option value="Purok 9-B">Purok 9-B</option>
+            <option value="Purok 12-A">Purok 12-A</option>
+
+            <option value="Purok 17">Purok 17</option>
+            <option value="Purok 17-A">Purok 17-A</option>
+            <option value="Purok 17-B">Purok 17-B</option>
+            <option value="Purok 17-C">Purok 17-C</option>
+            <option value="Purok 17-D">Purok 17-D</option>
+            <option value="Purok 4">Purok 4</option>
+            <option value="Purok 4-A">Purok 4-A</option>
+            <option value="Purok 4-B">Purok 4-B</option>
+            <option value="Purok 12">Purok 12</option>
+            <option value="Purok 13">Purok 13</option>
+
+            <option value="Purok 11">Purok 11</option>
+            <option value="Upper Purok 11">Upper Purok 11</option>
+            <option value="Lower Purok 11">Lower Purok 11</option>
+            <option value="Purok 11-A">Purok 11-A</option>
+            <option value="Purok 11-B">Purok 11-B</option>
+            <option value="Purok 11-C">Purok 11-C</option>
+            <option value="Purok 13-B">Purok 13-B</option>
+            <option value="Purok 22">Purok 22</option>
+            <option value="Upper Purok 16">Upper Purok 16</option>
+            <option value="Lower Purok 16">Lower Purok 16</option>
+
+            <option value="Purok 19">Purok 19</option>
+            <option value="Purok 20">Purok 20</option>
+            <option value="Purok 21">Purok 21</option>
+            <option value="Purok 15">Purok 15</option>
+            <option value="Purok 14">Purok 14</option>
+            <option value="Purok 5">Purok 5</option>
+            <option value="Purok 13-A">Purok 13-A</option>
+
+            <option value="Purok 10-A">Purok 10-A</option>
+            <option value="Purok 10-B">Purok 10-B</option>
+            <option value="Purok 8">Purok 8</option>
+            <option value="Purok 6">Purok 6</option>
+            <option value="Purok 18-A">Purok 18-A</option>
+            <option value="Purok 18-B">Purok 18-B</option>
+            <option value="Purok 18-C">Purok 18-C</option>
+            <option value="Purok 23">Purok 23</option>
+            <option value="Purok 24">Purok 24</option>
+
+          </select>
+
+          <span class="error-msg" id="err-regPurok">
+            Please select a Place / Clustered Purok.
+          </span>
+        </div>
+
         <div class="form-group">
           <label for="regPassword">Password</label>
-          <input type="password" id="regPassword" placeholder="Min 8 chars, 1 letter & 1 number" required minlength="8" autocomplete="new-password" pattern="^(?=.*[A-Za-z])(?=.*\d).{8,}$" />
-          <span class="error-msg" id="err-regPassword">Password must be at least 8 characters and include at least 1 letter and 1 number.</span>
+
+          <input
+            type="password"
+            id="regPassword"
+            placeholder="Min 8 chars, 1 letter & 1 number"
+            required
+            minlength="8"
+            autocomplete="new-password"
+            pattern="^(?=.*[A-Za-z])(?=.*\d).{8,}$"
+          />
+
+          <span class="error-msg" id="err-regPassword">
+            Password must be at least 8 characters and include at least 1 letter and 1 number.
+          </span>
         </div>
-        <button type="submit" class="btn-primary">Create Account</button>
-        <button type="button" id="showLogin" class="btn-secondary">Back to Login</button>
+
+        <button type="submit" class="btn-primary">
+          Create Account
+        </button>
+
+        <button type="button" id="showLogin" class="btn-secondary">
+          Back to Login
+        </button>
+
       </form>
     </section>
 
+
     <!-- ACTOR 1: RESIDENTS DASHBOARD -->
     <section id="residentArea" class="dashboard-card section-area">
+
       <div class="form-header">
         <h2>Resident Portal</h2>
-        <p class="user-badge">Actor: Resident (<span class="displayUser">Resident</span>)</p>
+        <p class="user-badge">
+          Actor: Resident (<span class="displayUser">Resident</span>)
+        </p>
       </div>
 
       <div class="menu-grid">
-        <button class="menu-btn btn-green" onclick="switchPanel('resSchedule')">View Schedule</button>
-        <button class="menu-btn btn-blue" onclick="switchPanel('resBinMon')">Waste Bin Monitoring</button>
-        <button class="menu-btn btn-orange" onclick="switchPanel('resIncident')">Incident Reporting</button>
-        <button class="menu-btn btn-purple" onclick="switchPanel('resFeedback')">Feedback</button>
-        <button class="menu-btn btn-red logoutBtn">Logout</button>
+
+        <button class="menu-btn btn-green"
+          onclick="switchPanel('resSchedule')">
+          View Schedule
+        </button>
+
+        <button class="menu-btn btn-blue"
+          onclick="switchPanel('resBinMon')">
+          Waste Bin Monitoring
+        </button>
+
+        <button class="menu-btn btn-orange"
+          onclick="switchPanel('resIncident')">
+          Incident Reporting
+        </button>
+
+        <button class="menu-btn btn-purple"
+          onclick="switchPanel('resFeedback')">
+          Feedback
+        </button>
+
+        <button class="menu-btn btn-red logoutBtn">
+          Logout
+        </button>
+
       </div>
 
       <div id="resSchedule" class="view-panel">
+
         <h3>Collection Schedule & Notifications</h3>
+
         <div style="background: rgba(14, 165, 233, 0.2); border: 1px solid #0ea5e9; padding: 0.8rem; border-radius: 8px; margin-bottom: 1rem;">
-          <strong>Notification:</strong> Biodegradable collection pickup in Zone 1 tomorrow at 8:00 AM.
+          <strong>Notification:</strong>
+          Biodegradable collection pickup in Zone 1 tomorrow at 8:00 AM.
         </div>
+
         <div class="table-wrapper">
+
           <table>
+
             <thead>
-              <tr><th>Zone</th><th>Category</th><th>Schedule Date</th><th>Status</th></tr>
+              <tr>
+                <th>Zone</th>
+                <th>Category</th>
+                <th>Schedule Date</th>
+                <th>Status</th>
+              </tr>
             </thead>
+
             <tbody>
-              <tr><td>Zone 1 - North</td><td>Biodegradable</td><td>Aug 31, 2026 | 08:00 AM</td><td><span class="badge badge-info">Scheduled</span></td></tr>
-              <tr><td>Zone 2 - Central</td><td>Recyclables</td><td>Sep 01, 2026 | 09:00 AM</td><td><span class="badge badge-info">Scheduled</span></td></tr>
+
+              <tr>
+                <td>Zone 1 - North</td>
+                <td>Biodegradable</td>
+                <td>Aug 31, 2026 | 08:00 AM</td>
+                <td>
+                  <span class="badge badge-info">
+                    Scheduled
+                  </span>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Zone 2 - Central</td>
+                <td>Recyclables</td>
+                <td>Sep 01, 2026 | 09:00 AM</td>
+                <td>
+                  <span class="badge badge-info">
+                    Scheduled
+                  </span>
+                </td>
+              </tr>
+
             </tbody>
+
           </table>
+
         </div>
+
       </div>
+
 
       <div id="resBinMon" class="view-panel">
+
         <h3>Waste Bin Monitoring (Nearby Public Bins)</h3>
+
         <div class="table-wrapper">
+
           <table>
-            <thead><tr><th>Bin ID</th><th>Location</th><th>Fill Level</th><th>Status</th></tr></thead>
+
+            <thead>
+              <tr>
+                <th>Bin ID</th>
+                <th>Location</th>
+                <th>Fill Level</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+
             <tbody>
-              <tr><td>BIN-101</td><td>Main Plaza</td><td>85% Full</td><td><span class="badge badge-warning">Near Capacity</span></td></tr>
-              <tr><td>BIN-102</td><td>Community Park</td><td>40% Full</td><td><span class="badge badge-success">Normal</span></td></tr>
+
+              <tr>
+                <td>BIN-101</td>
+                <td>Main Plaza</td>
+                <td>85% Full</td>
+                <td>
+                  <span class="badge badge-warning">
+                    Near Capacity
+                  </span>
+                </td>
+              </tr>
+
+              <tr>
+                <td>BIN-102</td>
+                <td>Community Park</td>
+                <td>40% Full</td>
+                <td>
+                  <span class="badge badge-success">
+                    Normal
+                  </span>
+                </td>
+              </tr>
+
             </tbody>
+
           </table>
+
         </div>
+
       </div>
+
 
       <div id="resIncident" class="view-panel">
+
         <h3>Incident Reporting (Submit Incident)</h3>
+
         <form id="resReportForm" class="sub-card" novalidate>
+
           <div class="form-group">
-            <label for="resIncLoc">Location / Landmark</label>
-            <input type="text" id="resIncLoc" placeholder="e.g. Corner 4th St., Barangay Hall" required minlength="4" />
-            <span class="error-msg" id="err-resIncLoc">Location is required (minimum 4 characters).</span>
+
+            <label for="resIncLoc">
+              Location / Landmark
+            </label>
+
+            <input
+              type="text"
+              id="resIncLoc"
+              placeholder="e.g. Corner 4th St., Barangay Hall"
+              required
+              minlength="4"
+            />
+
+            <span class="error-msg" id="err-resIncLoc">
+              Location is required (minimum 4 characters).
+            </span>
+
           </div>
+
           <div class="form-group">
-            <label for="resIncDetails">Incident Details</label>
-            <textarea id="resIncDetails" placeholder="Provide details (e.g. Overflowing bin, uncollected waste for 3 days)..." required minlength="10"></textarea>
-            <span class="error-msg" id="err-resIncDetails">Incident details must be at least 10 characters long.</span>
+
+            <label for="resIncDetails">
+              Incident Details
+            </label>
+
+            <textarea
+              id="resIncDetails"
+              placeholder="Provide details (e.g. Overflowing bin, uncollected waste for 3 days)..."
+              required
+              minlength="10"
+            ></textarea>
+
+            <span class="error-msg" id="err-resIncDetails">
+              Incident details must be at least 10 characters long.
+            </span>
+
           </div>
-          <button type="submit" class="btn-primary">Submit Incident Report</button>
+
+          <button type="submit" class="btn-primary">
+            Submit Incident Report
+          </button>
+
         </form>
+
         <h4>My Submitted Incidents</h4>
+
         <div class="table-wrapper">
+
           <table id="resIncidentTable">
-            <thead><tr><th>Report ID</th><th>Location</th><th>Details</th><th>Status</th></tr></thead>
+
+            <thead>
+              <tr>
+                <th>Report ID</th>
+                <th>Location</th>
+                <th>Details</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+
             <tbody id="resIncidentBody">
-              <tr><td>REP-801</td><td>Main Street</td><td>Uncollected Trash</td><td><span class="badge badge-warning">Under Review</span></td></tr>
+
+              <tr>
+                <td>REP-801</td>
+                <td>Main Street</td>
+                <td>Uncollected Trash</td>
+                <td>
+                  <span class="badge badge-warning">
+                    Under Review
+                  </span>
+                </td>
+              </tr>
+
             </tbody>
+
           </table>
+
         </div>
+
       </div>
 
+
       <div id="resFeedback" class="view-panel">
+
         <h3>Submit Service Feedback</h3>
+
         <form id="feedbackForm" class="sub-card" novalidate>
+
           <div class="form-group">
-            <label for="fbRating">Rating (1-5)</label>
+
+            <label for="fbRating">
+              Rating (1-5)
+            </label>
+
             <select id="fbRating" required>
-              <option value="" disabled selected>Select Rating</option>
-              <option value="5">5 - Excellent</option>
-              <option value="4">4 - Good</option>
-              <option value="3">3 - Average</option>
-              <option value="2">2 - Below Average</option>
-              <option value="1">1 - Poor</option>
+
+              <option value="" disabled selected>
+                Select Rating
+              </option>
+
+              <option value="5">
+                5 - Excellent
+              </option>
+
+              <option value="4">
+                4 - Good
+              </option>
+
+              <option value="3">
+                3 - Average
+              </option>
+
+              <option value="2">
+                2 - Below Average
+              </option>
+
+              <option value="1">
+                1 - Poor
+              </option>
+
             </select>
-            <span class="error-msg" id="err-fbRating">Please select a feedback rating.</span>
+
+            <span class="error-msg" id="err-fbRating">
+              Please select a feedback rating.
+            </span>
+
           </div>
+
           <div class="form-group">
-            <label for="fbComment">Comments</label>
-            <textarea id="fbComment" placeholder="Collection was on time and thorough..." required minlength="5"></textarea>
-            <span class="error-msg" id="err-fbComment">Comments must be at least 5 characters.</span>
+
+            <label for="fbComment">
+              Comments
+            </label>
+
+            <textarea
+              id="fbComment"
+              placeholder="Collection was on time and thorough..."
+              required
+              minlength="5"
+            ></textarea>
+
+            <span class="error-msg" id="err-fbComment">
+              Comments must be at least 5 characters.
+            </span>
+
           </div>
-          <button type="submit" class="btn-primary">Send Feedback</button>
+
+          <button type="submit" class="btn-primary">
+            Send Feedback
+          </button>
+
         </form>
+
       </div>
+
     </section>
+
 
     <!-- ACTOR 2: ADMIN / OFFICER DASHBOARD -->
     <section id="adminArea" class="dashboard-card section-area">
+
       <div class="form-header">
-        <h2>Admin / Officer Management Dashboard</h2>
-        <p class="user-badge">Actor: Admin / Officer (<span class="displayUser">Admin_Officer</span>)</p>
+
+        <h2>
+          Admin / Officer Management Dashboard
+        </h2>
+
+        <p class="user-badge">
+          Actor: Admin / Officer
+          (<span class="displayUser">Admin_Officer</span>)
+        </p>
+
       </div>
 
       <div class="menu-grid">
-        <button class="menu-btn btn-green" onclick="switchPanel('admAnalytics')">Analytics</button>
-        <button class="menu-btn btn-blue" onclick="switchPanel('admReports')">View / Manage Reports</button>
-        <button class="menu-btn btn-purple" onclick="switchPanel('admCrewTrack')">Crew Performance</button>
-        <button class="menu-btn btn-orange" onclick="switchPanel('admAuditExport')">Audit Trail & Export</button>
-        <button class="menu-btn btn-red logoutBtn">Logout</button>
+
+        <button class="menu-btn btn-green"
+          onclick="switchPanel('admAnalytics')">
+          Analytics
+        </button>
+
+        <button class="menu-btn btn-blue"
+          onclick="switchPanel('admReports')">
+          View / Manage Reports
+        </button>
+
+        <button class="menu-btn btn-purple"
+          onclick="switchPanel('admCrewTrack')">
+          Crew Performance
+        </button>
+
+        <button class="menu-btn btn-orange"
+          onclick="switchPanel('admAuditExport')">
+          Audit Trail & Export
+        </button>
+
+        <button class="menu-btn btn-red logoutBtn">
+          Logout
+        </button>
+
       </div>
+
 
       <div id="admAnalytics" class="view-panel">
+
         <h3>System Analytics</h3>
-        <canvas id="adminAnalyticsChart" style="max-height: 250px;"></canvas>
+
+        <canvas
+          id="adminAnalyticsChart"
+          style="max-height: 250px;"
+        ></canvas>
+
       </div>
+
 
       <div id="admReports" class="view-panel">
-        <h3>Resident Incident Reports & Evaluation</h3>
+
+        <h3>
+          Resident Incident Reports & Evaluation
+        </h3>
+
         <div class="table-wrapper">
+
           <table>
-            <thead><tr><th>Report ID</th><th>Resident</th><th>Location</th><th>Details</th><th>Status</th><th>Action</th></tr></thead>
-            <tbody id="adminReportBody">
-              <tr id="adm-row-REP-801">
-                <td>REP-801</td><td>User_01</td><td>Main Street</td><td>Uncollected Trash</td>
-                <td class="status-cell"><span class="badge badge-warning">Under Review</span></td>
-                <td><button class="btn-action" onclick="resolveAdminReport('REP-801')">Resolve</button></td>
+
+            <thead>
+              <tr>
+                <th>Report ID</th>
+                <th>Resident</th>
+                <th>Location</th>
+                <th>Details</th>
+                <th>Status</th>
+                <th>Action</th>
               </tr>
+            </thead>
+
+            <tbody id="adminReportBody">
+
+              <tr id="adm-row-REP-801">
+
+                <td>REP-801</td>
+                <td>User_01</td>
+                <td>Main Street</td>
+                <td>Uncollected Trash</td>
+
+                <td class="status-cell">
+                  <span class="badge badge-warning">
+                    Under Review
+                  </span>
+                </td>
+
+                <td>
+                  <button
+                    class="btn-action"
+                    onclick="resolveAdminReport('REP-801')"
+                  >
+                    Resolve
+                  </button>
+                </td>
+
+              </tr>
+
             </tbody>
+
           </table>
+
         </div>
+
       </div>
+
 
       <div id="admCrewTrack" class="view-panel">
+
         <h3>Crew Performance Tracking</h3>
+
         <div class="table-wrapper">
+
           <table>
-            <thead><tr><th>Crew Team</th><th>Assigned Zone</th><th>Tasks Completed</th><th>Performance Score</th></tr></thead>
+
+            <thead>
+              <tr>
+                <th>Crew Team</th>
+                <th>Assigned Zone</th>
+                <th>Tasks Completed</th>
+                <th>Performance Score</th>
+              </tr>
+            </thead>
+
             <tbody>
-              <tr><td>Crew Alpha</td><td>Zone 1</td><td>14 / 15 Pickups</td><td><span class="badge badge-success">93% High</span></td></tr>
-              <tr><td>Crew Bravo</td><td>Zone 2</td><td>10 / 12 Pickups</td><td><span class="badge badge-info">83% Satisfactory</span></td></tr>
+
+              <tr>
+                <td>Crew Alpha</td>
+                <td>Zone 1</td>
+                <td>14 / 15 Pickups</td>
+                <td>
+                  <span class="badge badge-success">
+                    93% High
+                  </span>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Crew Bravo</td>
+                <td>Zone 2</td>
+                <td>10 / 12 Pickups</td>
+                <td>
+                  <span class="badge badge-info">
+                    83% Satisfactory
+                  </span>
+                </td>
+              </tr>
+
             </tbody>
+
           </table>
+
         </div>
+
       </div>
 
+
       <div id="admAuditExport" class="view-panel">
+
         <h3>Audit Trail & Data Export</h3>
-        <p style="font-size: 0.85rem; color: #9ca3af; margin-bottom: 0.8rem;">Log of administrative actions and data export operations.</p>
+
+        <p style="font-size: 0.85rem; color: #9ca3af; margin-bottom: 0.8rem;">
+          Log of administrative actions and data export operations.
+        </p>
+
         <div class="table-wrapper">
+
           <table>
-            <thead><tr><th>Timestamp</th><th>Actor</th><th>Action</th></tr></thead>
+
+            <thead>
+              <tr>
+                <th>Timestamp</th>
+                <th>Actor</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
             <tbody>
-              <tr><td>2026-08-30 09:15</td><td>Admin_Officer</td><td>Resolved Incident REP-801</td></tr>
-              <tr><td>2026-08-30 08:30</td><td>Admin_Officer</td><td>Generated Monthly Analytics Report</td></tr>
+
+              <tr>
+                <td>2026-08-30 09:15</td>
+                <td>Admin_Officer</td>
+                <td>Resolved Incident REP-801</td>
+              </tr>
+
+              <tr>
+                <td>2026-08-30 08:30</td>
+                <td>Admin_Officer</td>
+                <td>
+                  Generated Monthly Analytics Report
+                </td>
+              </tr>
+
             </tbody>
+
           </table>
+
         </div>
-        <button class="btn-primary" onclick="alert('Exporting System Data to CSV... Download initiated.')" style="margin-top: 1rem;">Export Data (CSV)</button>
+
+        <button
+          class="btn-primary"
+          onclick="alert('Exporting System Data to CSV... Download initiated.')"
+          style="margin-top: 1rem;"
+        >
+          Export Data (CSV)
+        </button>
+
       </div>
+
     </section>
+
 
     <!-- ACTOR 3: COLLECTION CREW DASHBOARD -->
     <section id="crewArea" class="dashboard-card section-area">
+
       <div class="form-header">
+
         <h2>Collection Crew Portal</h2>
-        <p class="user-badge">Actor: Crew (<span class="displayUser">Crew_Unit_01</span>)</p>
+
+        <p class="user-badge">
+          Actor: Crew
+          (<span class="displayUser">Crew_Unit_01</span>)
+        </p>
+
       </div>
 
       <div class="menu-grid">
-        <button class="menu-btn btn-green" onclick="switchPanel('crewRoute')">Route Optimization</button>
-        <button class="menu-btn btn-blue" onclick="switchPanel('crewSegreg')">Segregation Compliance</button>
-        <button class="menu-btn btn-orange" onclick="switchPanel('crewDisposal')">Manage Disposal Data</button>
-        <button class="menu-btn btn-red logoutBtn">Logout</button>
+
+        <button class="menu-btn btn-green"
+          onclick="switchPanel('crewRoute')">
+          Route Optimization
+        </button>
+
+        <button class="menu-btn btn-blue"
+          onclick="switchPanel('crewSegreg')">
+          Segregation Compliance
+        </button>
+
+        <button class="menu-btn btn-orange"
+          onclick="switchPanel('crewDisposal')">
+          Manage Disposal Data
+        </button>
+
+        <button class="menu-btn btn-red logoutBtn">
+          Logout
+        </button>
+
       </div>
+
 
       <div id="crewRoute" class="view-panel">
+
         <h3>Optimized Collection Route</h3>
+
         <div class="sub-card">
-          <p><strong>Current Active Route:</strong> Route Alpha-4 (Zone 1 Sector)</p>
-          <p style="font-size: 0.85rem; color: #9ca3af; margin-top: 0.3rem;">Stop 1: Central Park Bin &rarr; Stop 2: Market Hub &rarr; Stop 3: North Station</p>
+
+          <p>
+            <strong>Current Active Route:</strong>
+            Route Alpha-4 (Zone 1 Sector)
+          </p>
+
+          <p style="font-size: 0.85rem; color: #9ca3af; margin-top: 0.3rem;">
+            Stop 1: Central Park Bin →
+            Stop 2: Market Hub →
+            Stop 3: North Station
+          </p>
+
         </div>
+
       </div>
+
 
       <div id="crewSegreg" class="view-panel">
+
         <h3>Segregation Compliance Check</h3>
+
         <form id="crewSegForm" class="sub-card" novalidate>
+
           <div class="form-group">
-            <label for="segLoc">Household / Location Tag</label>
-            <input type="text" id="segLoc" placeholder="e.g., Household #402" required minlength="3" />
-            <span class="error-msg" id="err-segLoc">Please provide a household or location tag (min 3 chars).</span>
+
+            <label for="segLoc">
+              Household / Location Tag
+            </label>
+
+            <input
+              type="text"
+              id="segLoc"
+              placeholder="e.g., Household #402"
+              required
+              minlength="3"
+            />
+
+            <span class="error-msg" id="err-segLoc">
+              Please provide a household or location tag (min 3 chars).
+            </span>
+
           </div>
+
           <div class="form-group">
-            <label for="segStatus">Compliance Status</label>
+
+            <label for="segStatus">
+              Compliance Status
+            </label>
+
             <select id="segStatus" required>
-              <option value="" disabled selected>Select Status</option>
-              <option value="Compliant">Fully Compliant</option>
-              <option value="Non-Compliant">Non-Compliant (Mixed Waste)</option>
+
+              <option value="" disabled selected>
+                Select Status
+              </option>
+
+              <option value="Compliant">
+                Fully Compliant
+              </option>
+
+              <option value="Non-Compliant">
+                Non-Compliant (Mixed Waste)
+              </option>
+
             </select>
-            <span class="error-msg" id="err-segStatus">Select a compliance status option.</span>
+
+            <span class="error-msg" id="err-segStatus">
+              Select a compliance status option.
+            </span>
+
           </div>
-          <button type="submit" class="btn-primary">Log Compliance Check</button>
+
+          <button type="submit" class="btn-primary">
+            Log Compliance Check
+          </button>
+
         </form>
+
       </div>
 
+
       <div id="crewDisposal" class="view-panel">
-        <h3>Manage Disposal Data & Submit Report</h3>
+
+        <h3>
+          Manage Disposal Data & Submit Report
+        </h3>
+
         <form id="disposalForm" class="sub-card" novalidate>
+
           <div class="form-row">
+
             <div class="form-group">
-              <label for="dispWeight">Transported Weight (kg)</label>
-              <input type="number" id="dispWeight" placeholder="e.g. 450" required min="1" max="50000" step="0.1" />
-              <span class="error-msg" id="err-dispWeight">Weight must be a positive number between 1 and 50,000 kg.</span>
+
+              <label for="dispWeight">
+                Transported Weight (kg)
+              </label>
+
+              <input
+                type="number"
+                id="dispWeight"
+                placeholder="e.g. 450"
+                required
+                min="1"
+                max="50000"
+                step="0.1"
+              />
+
+              <span class="error-msg" id="err-dispWeight">
+                Weight must be a positive number between 1 and 50,000 kg.
+              </span>
+
             </div>
+
             <div class="form-group">
-              <label for="dispSite">Disposal Site</label>
-              <input type="text" id="dispSite" placeholder="e.g. City Central Facility" required minlength="3" />
-              <span class="error-msg" id="err-dispSite">Disposal site name is required (min 3 chars).</span>
+
+              <label for="dispSite">
+                Disposal Site
+              </label>
+
+              <input
+                type="text"
+                id="dispSite"
+                placeholder="e.g. City Central Facility"
+                required
+                minlength="3"
+              />
+
+              <span class="error-msg" id="err-dispSite">
+                Disposal site name is required (min 3 chars).
+              </span>
+
             </div>
+
           </div>
-          <button type="submit" class="btn-primary">Submit Disposal Report</button>
+
+          <button type="submit" class="btn-primary">
+            Submit Disposal Report
+          </button>
+
         </form>
+
       </div>
+
     </section>
+
 
     <!-- ACTOR 4: CITY FACILITATOR DASHBOARD -->
     <section id="facilitatorArea" class="dashboard-card section-area">
+
       <div class="form-header">
+
         <h2>City Facilitator Dashboard</h2>
-        <p class="user-badge">Actor: City Facilitator (<span class="displayUser">Facilitator_City</span>)</p>
+
+        <p class="user-badge">
+          Actor: City Facilitator
+          (<span class="displayUser">Facilitator_City</span>)
+        </p>
+
       </div>
 
       <div class="menu-grid">
-        <button class="menu-btn btn-green" onclick="switchPanel('facSegMon')">Segregation Monitoring</button>
-        <button class="menu-btn btn-blue" onclick="switchPanel('facDisposalData')">Submitted Disposal Data</button>
-        <button class="menu-btn btn-purple" onclick="switchPanel('facEvalReport')">Evaluation & Reports</button>
-        <button class="menu-btn btn-red logoutBtn">Logout</button>
+
+        <button class="menu-btn btn-green"
+          onclick="switchPanel('facSegMon')">
+          Segregation Monitoring
+        </button>
+
+        <button class="menu-btn btn-blue"
+          onclick="switchPanel('facDisposalData')">
+          Submitted Disposal Data
+        </button>
+
+        <button class="menu-btn btn-purple"
+          onclick="switchPanel('facEvalReport')">
+          Evaluation & Reports
+        </button>
+
+        <button class="menu-btn btn-red logoutBtn">
+          Logout
+        </button>
+
       </div>
+
 
       <div id="facSegMon" class="view-panel">
-        <h3>Citywide Segregation Compliance Monitoring</h3>
+
+        <h3>
+          Citywide Segregation Compliance Monitoring
+        </h3>
+
         <div class="table-wrapper">
+
           <table>
-            <thead><tr><th>Zone</th><th>Compliance Rate</th><th>Overall Status</th></tr></thead>
+
+            <thead>
+              <tr>
+                <th>Zone</th>
+                <th>Compliance Rate</th>
+                <th>Overall Status</th>
+              </tr>
+            </thead>
+
             <tbody>
-              <tr><td>Zone 1 - North Sector</td><td>88%</td><td><span class="badge badge-success">High Compliance</span></td></tr>
-              <tr><td>Zone 2 - Central Market</td><td>65%</td><td><span class="badge badge-warning">Needs Inspection</span></td></tr>
+
+              <tr>
+                <td>Zone 1 - North Sector</td>
+                <td>88%</td>
+                <td>
+                  <span class="badge badge-success">
+                    High Compliance
+                  </span>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Zone 2 - Central Market</td>
+                <td>65%</td>
+                <td>
+                  <span class="badge badge-warning">
+                    Needs Inspection
+                  </span>
+                </td>
+              </tr>
+
             </tbody>
+
           </table>
+
         </div>
+
       </div>
+
 
       <div id="facDisposalData" class="view-panel">
-        <h3>Submitted Disposal Data Overview</h3>
+
+        <h3>
+          Submitted Disposal Data Overview
+        </h3>
+
         <div class="table-wrapper">
+
           <table id="facDisposalTable">
-            <thead><tr><th>Crew Unit</th><th>Disposal Site</th><th>Weight (kg)</th><th>Date Submitted</th></tr></thead>
+
+            <thead>
+              <tr>
+                <th>Crew Unit</th>
+                <th>Disposal Site</th>
+                <th>Weight (kg)</th>
+                <th>Date Submitted</th>
+              </tr>
+            </thead>
+
             <tbody id="facDisposalBody">
-              <tr><td>Crew Alpha</td><td>Central Landfill Facility</td><td>1,240 kg</td><td>Aug 30, 2026</td></tr>
+
+              <tr>
+                <td>Crew Alpha</td>
+                <td>Central Landfill Facility</td>
+                <td>1,240 kg</td>
+                <td>Aug 30, 2026</td>
+              </tr>
+
             </tbody>
+
           </table>
+
         </div>
+
       </div>
 
+
       <div id="facEvalReport" class="view-panel">
-        <h3>Citywide Waste Management Evaluation</h3>
+
+        <h3>
+          Citywide Waste Management Evaluation
+        </h3>
+
         <div class="sub-card">
-          <h4>City Environmental Impact Score: 91/100</h4>
-          <p style="font-size: 0.85rem; color: #d1d5db;">Overall efficiency across collection schedules, incident mitigation, and segregation compliance.</p>
+
+          <h4>
+            City Environmental Impact Score: 91/100
+          </h4>
+
+          <p style="font-size: 0.85rem; color: #d1d5db;">
+            Overall efficiency across collection schedules,
+            incident mitigation, and segregation compliance.
+          </p>
+
         </div>
+
       </div>
+
     </section>
 
   </div>
 
+
   <footer>
-    <p>© 2026 Smart Waste Collection Report System (SWCRS)</p>
+    <p>
+      © 2026 Smart Waste Collection Report System (SWCRS)
+    </p>
   </footer>
 
-  <script>
-    const loginSection = document.getElementById('loginSection');
-    const registerSection = document.getElementById('registerSection');
-    const residentArea = document.getElementById('residentArea');
-    const adminArea = document.getElementById('adminArea');
-    const crewArea = document.getElementById('crewArea');
-    const facilitatorArea = document.getElementById('facilitatorArea');
 
-    const showRegister = document.getElementById('showRegister');
-    const showLogin = document.getElementById('showLogin');
-    const logoutBtns = document.querySelectorAll('.logoutBtn');
+  <script>
+
+    const loginSection =
+      document.getElementById('loginSection');
+
+    const registerSection =
+      document.getElementById('registerSection');
+
+    const residentArea =
+      document.getElementById('residentArea');
+
+    const adminArea =
+      document.getElementById('adminArea');
+
+    const crewArea =
+      document.getElementById('crewArea');
+
+    const facilitatorArea =
+      document.getElementById('facilitatorArea');
+
+    const showRegister =
+      document.getElementById('showRegister');
+
+    const showLogin =
+      document.getElementById('showLogin');
+
+    const logoutBtns =
+      document.querySelectorAll('.logoutBtn');
 
     let adminChartInstance = null;
+
     let repCounter = 802;
 
+
     showRegister.addEventListener('click', () => {
+
       loginSection.classList.remove('active');
+
       registerSection.classList.add('active');
-      resetFormValidation(document.getElementById('registerForm'));
+
+      resetFormValidation(
+        document.getElementById('registerForm')
+      );
+
     });
+
 
     showLogin.addEventListener('click', () => {
+
       registerSection.classList.remove('active');
+
       loginSection.classList.add('active');
-      resetFormValidation(document.getElementById('loginForm'));
+
+      resetFormValidation(
+        document.getElementById('loginForm')
+      );
+
     });
+
 
     logoutBtns.forEach(btn => {
+
       btn.addEventListener('click', () => {
-        document.querySelectorAll('.section-area').forEach(sec => sec.classList.remove('active'));
-        document.querySelectorAll('.view-panel').forEach(panel => panel.classList.remove('active'));
+
+        document
+          .querySelectorAll('.section-area')
+          .forEach(sec =>
+            sec.classList.remove('active')
+          );
+
+        document
+          .querySelectorAll('.view-panel')
+          .forEach(panel =>
+            panel.classList.remove('active')
+          );
+
         loginSection.classList.add('active');
+
       });
+
     });
 
+
     function switchPanel(panelId) {
-      const panel = document.getElementById(panelId);
-      const isVisible = panel.classList.contains('active');
-      const container = panel.closest('.dashboard-card');
-      
-      container.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active'));
+
+      const panel =
+        document.getElementById(panelId);
+
+      const isVisible =
+        panel.classList.contains('active');
+
+      const container =
+        panel.closest('.dashboard-card');
+
+      container
+        .querySelectorAll('.view-panel')
+        .forEach(p =>
+          p.classList.remove('active')
+        );
+
       if (!isVisible) {
         panel.classList.add('active');
       }
+
     }
 
+
     function validateField(input) {
-      const errorMsgEl = document.getElementById(`err-${input.id}`);
+
+      const errorMsgEl =
+        document.getElementById(`err-${input.id}`);
+
       let isValid = true;
 
-      if (input.hasAttribute('required') && !input.value.trim()) {
+
+      if (
+        input.hasAttribute('required') &&
+        !input.value.trim()
+      ) {
+
         isValid = false;
-      } else if (input.value.trim() !== '') {
-        if (input.hasAttribute('minlength') && input.value.trim().length < parseInt(input.getAttribute('minlength'))) {
+
+      } else if (
+        input.value.trim() !== ''
+      ) {
+
+        if (
+          input.hasAttribute('minlength') &&
+          input.value.trim().length <
+          parseInt(
+            input.getAttribute('minlength')
+          )
+        ) {
+
           isValid = false;
+
         }
+
+
         if (input.hasAttribute('pattern')) {
-          const patternRegex = new RegExp(`^${input.getAttribute('pattern')}\$`);
-          if (!patternRegex.test(input.value.trim())) {
+
+          const patternRegex =
+            new RegExp(
+              `^${input.getAttribute('pattern')}$`
+            );
+
+          if (
+            !patternRegex.test(
+              input.value.trim()
+            )
+          ) {
+
             isValid = false;
+
           }
+
         }
+
+
         if (input.type === 'number') {
-          const val = parseFloat(input.value);
-          const min = input.hasAttribute('min') ? parseFloat(input.getAttribute('min')) : -Infinity;
-          const max = input.hasAttribute('max') ? parseFloat(input.getAttribute('max')) : Infinity;
-          if (isNaN(val) || val < min || val > max) {
+
+          const val =
+            parseFloat(input.value);
+
+          const min =
+            input.hasAttribute('min')
+              ? parseFloat(
+                  input.getAttribute('min')
+                )
+              : -Infinity;
+
+          const max =
+            input.hasAttribute('max')
+              ? parseFloat(
+                  input.getAttribute('max')
+                )
+              : Infinity;
+
+          if (
+            isNaN(val) ||
+            val < min ||
+            val > max
+          ) {
+
             isValid = false;
+
           }
+
         }
+
       }
 
+
       if (!isValid) {
+
         input.classList.add('invalid');
+
         input.classList.remove('valid');
-        if (errorMsgEl) errorMsgEl.classList.add('visible');
-      } else {
-        input.classList.remove('invalid');
-        if (input.value.trim() !== '') {
-          input.classList.add('valid');
-        } else {
-          input.classList.remove('valid');
+
+        if (errorMsgEl) {
+          errorMsgEl.classList.add('visible');
         }
-        if (errorMsgEl) errorMsgEl.classList.remove('visible');
+
+      } else {
+
+        input.classList.remove('invalid');
+
+        if (input.value.trim() !== '') {
+
+          input.classList.add('valid');
+
+        } else {
+
+          input.classList.remove('valid');
+
+        }
+
+        if (errorMsgEl) {
+          errorMsgEl.classList.remove('visible');
+        }
+
       }
 
       return isValid;
+
     }
+
 
     function validateForm(form) {
-      const inputs = form.querySelectorAll('input, select, textarea');
+
+      const inputs =
+        form.querySelectorAll(
+          'input, select, textarea'
+        );
+
       let formIsValid = true;
 
+
       inputs.forEach(input => {
-        const isFieldValid = validateField(input);
-        if (!isFieldValid) formIsValid = false;
+
+        const isFieldValid =
+          validateField(input);
+
+        if (!isFieldValid) {
+          formIsValid = false;
+        }
+
       });
+
 
       return formIsValid;
+
     }
+
 
     function resetFormValidation(form) {
+
       form.reset();
-      form.querySelectorAll('input, select, textarea').forEach(input => {
-        input.classList.remove('invalid', 'valid');
-      });
-      form.querySelectorAll('.error-msg').forEach(msg => {
-        msg.classList.remove('visible');
-      });
+
+      form
+        .querySelectorAll(
+          'input, select, textarea'
+        )
+        .forEach(input => {
+
+          input.classList.remove(
+            'invalid',
+            'valid'
+          );
+
+        });
+
+
+      form
+        .querySelectorAll('.error-msg')
+        .forEach(msg => {
+
+          msg.classList.remove('visible');
+
+        });
+
     }
 
-    document.querySelectorAll('form').forEach(form => {
-      form.querySelectorAll('input, select, textarea').forEach(input => {
-        input.addEventListener('input', () => validateField(input));
-        input.addEventListener('blur', () => validateField(input));
+
+    document
+      .querySelectorAll('form')
+      .forEach(form => {
+
+        form
+          .querySelectorAll(
+            'input, select, textarea'
+          )
+          .forEach(input => {
+
+            input.addEventListener(
+              'input',
+              () => validateField(input)
+            );
+
+            input.addEventListener(
+              'blur',
+              () => validateField(input)
+            );
+
+          });
+
       });
-    });
 
-    document.getElementById('loginForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const form = e.target;
 
-      if (!validateForm(form)) {
-        return;
-      }
+    document
+      .getElementById('loginForm')
+      .addEventListener(
+        'submit',
+        (e) => {
 
-      const role = document.getElementById('loginRole').value;
-      const user = document.getElementById('loginUser').value;
+          e.preventDefault();
 
-      document.querySelectorAll('.displayUser').forEach(el => el.textContent = user);
-      loginSection.classList.remove('active');
+          const form = e.target;
 
-      if (role === 'resident') {
-        residentArea.classList.add('active');
-      } else if (role === 'admin') {
-        adminArea.classList.add('active');
-        initAdminChart();
-      } else if (role === 'crew') {
-        crewArea.classList.add('active');
-      } else if (role === 'facilitator') {
-        facilitatorArea.classList.add('active');
-      }
 
-      resetFormValidation(form);
-    });
+          if (!validateForm(form)) {
+            return;
+          }
 
-    document.getElementById('registerForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const form = e.target;
 
-      if (!validateForm(form)) {
-        return;
-      }
+          const role =
+            document.getElementById(
+              'loginRole'
+            ).value;
 
-      alert('Registration data validated and saved to system directory! Please sign in.');
-      registerSection.classList.remove('active');
-      loginSection.classList.add('active');
-      resetFormValidation(form);
-    });
+          const user =
+            document.getElementById(
+              'loginUser'
+            ).value;
 
-    document.getElementById('resReportForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const form = e.target;
 
-      if (!validateForm(form)) {
-        return;
-      }
+          document
+            .querySelectorAll('.displayUser')
+            .forEach(el =>
+              el.textContent = user
+            );
 
-      const loc = document.getElementById('resIncLoc').value;
-      const details = document.getElementById('resIncDetails').value;
-      const repId = `REP-${repCounter++}`;
-      const user = document.querySelector('#residentArea .displayUser').textContent;
 
-      const resBody = document.getElementById('resIncidentBody');
-      const resRow = document.createElement('tr');
-      resRow.id = `res-row-${repId}`;
-      resRow.innerHTML = `<td>${repId}</td><td>${loc}</td><td>${details}</td><td class="status-cell"><span class="badge badge-warning">Under Review</span></td>`;
-      resBody.prepend(resRow);
+          loginSection.classList.remove(
+            'active'
+          );
 
-      const admBody = document.getElementById('adminReportBody');
-      const admRow = document.createElement('tr');
-      admRow.id = `adm-row-${repId}`;
-      admRow.innerHTML = `<td>${repId}</td><td>${user}</td><td>${loc}</td><td>${details}</td><td class="status-cell"><span class="badge badge-warning">Under Review</span></td><td><button class="btn-action" onclick="resolveAdminReport('${repId}')">Resolve</button></td>`;
-      admBody.prepend(admRow);
 
-      resetFormValidation(form);
-      alert(`Incident Report ${repId} submitted successfully!`);
-    });
+          if (role === 'resident') {
+
+            residentArea.classList.add(
+              'active'
+            );
+
+          } else if (role === 'admin') {
+
+            adminArea.classList.add(
+              'active'
+            );
+
+            initAdminChart();
+
+          } else if (role === 'crew') {
+
+            crewArea.classList.add(
+              'active'
+            );
+
+          } else if (role === 'facilitator') {
+
+            facilitatorArea.classList.add(
+              'active'
+            );
+
+          }
+
+
+          resetFormValidation(form);
+
+        }
+      );
+
+
+    document
+      .getElementById('registerForm')
+      .addEventListener(
+        'submit',
+        (e) => {
+
+          e.preventDefault();
+
+          const form = e.target;
+
+
+          if (!validateForm(form)) {
+            return;
+          }
+
+
+          alert(
+            'Registration data validated and saved to system directory! Please sign in.'
+          );
+
+
+          registerSection.classList.remove(
+            'active'
+          );
+
+          loginSection.classList.add(
+            'active'
+          );
+
+
+          resetFormValidation(form);
+
+        }
+      );
+
+
+    document
+      .getElementById('resReportForm')
+      .addEventListener(
+        'submit',
+        (e) => {
+
+          e.preventDefault();
+
+          const form = e.target;
+
+
+          if (!validateForm(form)) {
+            return;
+          }
+
+
+          const loc =
+            document.getElementById(
+              'resIncLoc'
+            ).value;
+
+          const details =
+            document.getElementById(
+              'resIncDetails'
+            ).value;
+
+          const repId =
+            `REP-${repCounter++}`;
+
+          const user =
+            document.querySelector(
+              '#residentArea .displayUser'
+            ).textContent;
+
+
+          const resBody =
+            document.getElementById(
+              'resIncidentBody'
+            );
+
+
+          const resRow =
+            document.createElement('tr');
+
+
+          resRow.id =
+            `res-row-${repId}`;
+
+
+          resRow.innerHTML =
+            `<td>${repId}</td>
+             <td>${loc}</td>
+             <td>${details}</td>
+             <td class="status-cell">
+               <span class="badge badge-warning">
+                 Under Review
+               </span>
+             </td>`;
+
+
+          resBody.prepend(resRow);
+
+
+          const admBody =
+            document.getElementById(
+              'adminReportBody'
+            );
+
+
+          const admRow =
+            document.createElement('tr');
+
+
+          admRow.id =
+            `adm-row-${repId}`;
+
+
+          admRow.innerHTML =
+            `<td>${repId}</td>
+             <td>${user}</td>
+             <td>${loc}</td>
+             <td>${details}</td>
+             <td class="status-cell">
+               <span class="badge badge-warning">
+                 Under Review
+               </span>
+             </td>
+             <td>
+               <button
+                 class="btn-action"
+                 onclick="resolveAdminReport('${repId}')"
+               >
+                 Resolve
+               </button>
+             </td>`;
+
+
+          admBody.prepend(admRow);
+
+
+          resetFormValidation(form);
+
+
+          alert(
+            `Incident Report ${repId} submitted successfully!`
+          );
+
+        }
+      );
+
 
     function resolveAdminReport(repId) {
-      const resRow = document.getElementById(`res-row-${repId}`);
-      const admRow = document.getElementById(`adm-row-${repId}`);
-      const badgeHTML = `<span class="badge badge-success">Resolved</span>`;
 
-      if (resRow) resRow.querySelector('.status-cell').innerHTML = badgeHTML;
-      if (admRow) admRow.querySelector('.status-cell').innerHTML = badgeHTML;
+      const resRow =
+        document.getElementById(
+          `res-row-${repId}`
+        );
 
-      alert(`Report ${repId} marked as Resolved.`);
+      const admRow =
+        document.getElementById(
+          `adm-row-${repId}`
+        );
+
+
+      const badgeHTML =
+        `<span class="badge badge-success">
+           Resolved
+         </span>`;
+
+
+      if (resRow) {
+
+        resRow
+          .querySelector('.status-cell')
+          .innerHTML = badgeHTML;
+
+      }
+
+
+      if (admRow) {
+
+        admRow
+          .querySelector('.status-cell')
+          .innerHTML = badgeHTML;
+
+      }
+
+
+      alert(
+        `Report ${repId} marked as Resolved.`
+      );
+
     }
 
-    document.getElementById('disposalForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const form = e.target;
 
-      if (!validateForm(form)) {
-        return;
-      }
+    document
+      .getElementById('disposalForm')
+      .addEventListener(
+        'submit',
+        (e) => {
 
-      const weight = document.getElementById('dispWeight').value;
-      const site = document.getElementById('dispSite').value;
-      const crewUser = document.querySelector('#crewArea .displayUser').textContent;
+          e.preventDefault();
 
-      const facBody = document.getElementById('facDisposalBody');
-      const row = document.createElement('tr');
-      row.innerHTML = `<td>${crewUser}</td><td>${site}</td><td>${weight} kg</td><td>Aug 30, 2026</td>`;
-      facBody.prepend(row);
+          const form = e.target;
 
-      resetFormValidation(form);
-      alert('Disposal Data & Transported Weight Logged Successfully!');
-    });
 
-    document.getElementById('feedbackForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const form = e.target;
+          if (!validateForm(form)) {
+            return;
+          }
 
-      if (!validateForm(form)) {
-        return;
-      }
 
-      alert('Feedback successfully submitted to Admin and City Facilitator dashboard!');
-      resetFormValidation(form);
-    });
+          const weight =
+            document.getElementById(
+              'dispWeight'
+            ).value;
 
-    document.getElementById('crewSegForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const form = e.target;
+          const site =
+            document.getElementById(
+              'dispSite'
+            ).value;
 
-      if (!validateForm(form)) {
-        return;
-      }
+          const crewUser =
+            document.querySelector(
+              '#crewArea .displayUser'
+            ).textContent;
 
-      alert('Segregation Compliance log recorded!');
-      resetFormValidation(form);
-    });
+
+          const facBody =
+            document.getElementById(
+              'facDisposalBody'
+            );
+
+
+          const row =
+            document.createElement('tr');
+
+
+          row.innerHTML =
+            `<td>${crewUser}</td>
+             <td>${site}</td>
+             <td>${weight} kg</td>
+             <td>Aug 30, 2026</td>`;
+
+
+          facBody.prepend(row);
+
+
+          resetFormValidation(form);
+
+
+          alert(
+            'Disposal Data & Transported Weight Logged Successfully!'
+          );
+
+        }
+      );
+
+
+    document
+      .getElementById('feedbackForm')
+      .addEventListener(
+        'submit',
+        (e) => {
+
+          e.preventDefault();
+
+          const form = e.target;
+
+
+          if (!validateForm(form)) {
+            return;
+          }
+
+
+          alert(
+            'Feedback successfully submitted to Admin and City Facilitator dashboard!'
+          );
+
+
+          resetFormValidation(form);
+
+        }
+      );
+
+
+    document
+      .getElementById('crewSegForm')
+      .addEventListener(
+        'submit',
+        (e) => {
+
+          e.preventDefault();
+
+          const form = e.target;
+
+
+          if (!validateForm(form)) {
+            return;
+          }
+
+
+          alert(
+            'Segregation Compliance log recorded!'
+          );
+
+
+          resetFormValidation(form);
+
+        }
+      );
+
 
     function initAdminChart() {
-      const ctx = document.getElementById('adminAnalyticsChart').getContext('2d');
-      if (adminChartInstance) adminChartInstance.destroy();
-      adminChartInstance = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: ['Daily Collection', 'Weekly Volume', 'Monthly Target'],
-          datasets: [{
-            label: 'Waste Volume (kg)',
-            data: [320, 2100, 8500],
-            backgroundColor: ['#22c55e', '#0ea5e9', '#8b5cf6']
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false
-        }
-      });
+
+      const ctx =
+        document
+          .getElementById(
+            'adminAnalyticsChart'
+          )
+          .getContext('2d');
+
+
+      if (adminChartInstance) {
+        adminChartInstance.destroy();
+      }
+
+
+      adminChartInstance =
+        new Chart(ctx, {
+
+          type: 'bar',
+
+          data: {
+
+            labels: [
+              'Daily Collection',
+              'Weekly Volume',
+              'Monthly Target'
+            ],
+
+            datasets: [{
+
+              label:
+                'Waste Volume (kg)',
+
+              data: [
+                320,
+                2100,
+                8500
+              ],
+
+              backgroundColor: [
+                '#22c55e',
+                '#0ea5e9',
+                '#8b5cf6'
+              ]
+
+            }]
+
+          },
+
+          options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false
+
+          }
+
+        });
+
     }
+
   </script>
+
 </body>
 </html>
