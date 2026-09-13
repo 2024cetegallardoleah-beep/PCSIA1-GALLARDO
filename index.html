@@ -20,7 +20,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      background: linear-gradient(rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.75)), 
+      background: linear-gradient(rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.75)),
                   url('ley.jpg'),
                   #111827;
       background-size: cover;
@@ -120,6 +120,7 @@
       margin-bottom: 1.2rem;
       display: flex;
       flex-direction: column;
+      position: relative;
     }
 
     .form-row {
@@ -145,6 +146,31 @@
       font-size: 0.9rem;
       outline: none;
       font-family: inherit;
+      transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    /* Validation UI Styles */
+    input.invalid, select.invalid, textarea.invalid {
+      border-color: #ef4444 !important;
+      background-color: rgba(239, 68, 68, 0.12) !important;
+      box-shadow: 0 0 8px rgba(239, 68, 68, 0.4);
+    }
+
+    input.valid, select.valid, textarea.valid {
+      border-color: #22c55e !important;
+      background-color: rgba(34, 197, 94, 0.08) !important;
+    }
+
+    .error-msg {
+      color: #f87171;
+      font-size: 0.78rem;
+      margin-top: 0.35rem;
+      display: none;
+      font-weight: 600;
+    }
+
+    .error-msg.visible {
+      display: block;
     }
 
     select option {
@@ -344,7 +370,7 @@
         <h2>System Login</h2>
         <p>Select your system actor role to sign in.</p>
       </div>
-      <form id="loginForm" autocomplete="off">
+      <form id="loginForm" autocomplete="off" novalidate>
         <div class="form-group">
           <label for="loginRole">System Actor Role</label>
           <select id="loginRole" required>
@@ -354,14 +380,17 @@
             <option value="crew">Collection Crew</option>
             <option value="facilitator">City Facilitator</option>
           </select>
+          <span class="error-msg" id="err-loginRole">Please select a system actor role.</span>
         </div>
         <div class="form-group">
           <label for="loginUser">Username or Account ID</label>
-          <input type="text" id="loginUser" placeholder="Enter Username or ID" required autocomplete="off" />
+          <input type="text" id="loginUser" placeholder="Enter Username or ID" required minlength="3" autocomplete="off" />
+          <span class="error-msg" id="err-loginUser">Username/ID must be at least 3 characters.</span>
         </div>
         <div class="form-group">
           <label for="loginPass">Password</label>
-          <input type="password" id="loginPass" placeholder="Enter Password" required autocomplete="new-password" />
+          <input type="password" id="loginPass" placeholder="Enter Password" required minlength="6" autocomplete="new-password" />
+          <span class="error-msg" id="err-loginPass">Password must be at least 6 characters long.</span>
         </div>
         <button type="submit" class="btn-primary">Sign In</button>
         <button type="button" id="showRegister" class="btn-secondary">Register Account</button>
@@ -374,7 +403,7 @@
         <h2>Register Account</h2>
         <p>Create credentials linked to system database.</p>
       </div>
-      <form id="registerForm" autocomplete="off">
+      <form id="registerForm" autocomplete="off" novalidate>
         <div class="form-group">
           <label for="regRole">Role Registration</label>
           <select id="regRole" required>
@@ -384,26 +413,32 @@
             <option value="crew">Crew Data</option>
             <option value="facilitator">Facilitator Data</option>
           </select>
+          <span class="error-msg" id="err-regRole">Please select a valid role.</span>
         </div>
         <div class="form-group">
           <label for="regFirstName">First Name</label>
-          <input type="text" id="regFirstName" placeholder="Enter first name" required />
+          <input type="text" id="regFirstName" placeholder="Enter first name" required minlength="2" maxlength="30" pattern="[A-Za-z\s]+" />
+          <span class="error-msg" id="err-regFirstName">First name must contain letters only (min 2 chars).</span>
         </div>
         <div class="form-group">
           <label for="regMiddleName">Middle Name</label>
-          <input type="text" id="regMiddleName" placeholder="Enter middle name" />
+          <input type="text" id="regMiddleName" placeholder="Enter middle name (optional)" maxlength="30" pattern="[A-Za-z\s]*" />
+          <span class="error-msg" id="err-regMiddleName">Middle name must contain letters only.</span>
         </div>
         <div class="form-group">
           <label for="regLastName">Last Name</label>
-          <input type="text" id="regLastName" placeholder="Enter last name" required />
+          <input type="text" id="regLastName" placeholder="Enter last name" required minlength="2" maxlength="30" pattern="[A-Za-z\s]+" />
+          <span class="error-msg" id="err-regLastName">Last name must contain letters only (min 2 chars).</span>
         </div>
         <div class="form-group">
           <label for="regEmail">Email Address</label>
-          <input type="email" id="regEmail" placeholder="Enter email" required />
+          <input type="email" id="regEmail" placeholder="e.g. user@swcrs.gov" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
+          <span class="error-msg" id="err-regEmail">Enter a valid email address (e.g. name@domain.com).</span>
         </div>
         <div class="form-group">
           <label for="regPassword">Password</label>
-          <input type="password" id="regPassword" placeholder="Enter password" required autocomplete="new-password" />
+          <input type="password" id="regPassword" placeholder="Min 8 chars, 1 letter & 1 number" required minlength="8" autocomplete="new-password" pattern="^(?=.*[A-Za-z])(?=.*\d).{8,}$" />
+          <span class="error-msg" id="err-regPassword">Password must be at least 8 characters and include at least 1 letter and 1 number.</span>
         </div>
         <button type="submit" class="btn-primary">Create Account</button>
         <button type="button" id="showLogin" class="btn-secondary">Back to Login</button>
@@ -458,14 +493,16 @@
 
       <div id="resIncident" class="view-panel">
         <h3>Incident Reporting (Submit Incident)</h3>
-        <form id="resReportForm" class="sub-card">
+        <form id="resReportForm" class="sub-card" novalidate>
           <div class="form-group">
-            <label>Location / Landmark</label>
-            <input type="text" id="resIncLoc" placeholder="Corner 4th St." required />
+            <label for="resIncLoc">Location / Landmark</label>
+            <input type="text" id="resIncLoc" placeholder="e.g. Corner 4th St., Barangay Hall" required minlength="4" />
+            <span class="error-msg" id="err-resIncLoc">Location is required (minimum 4 characters).</span>
           </div>
           <div class="form-group">
-            <label>Incident Details</label>
-            <textarea id="resIncDetails" placeholder="Overflowing bin, uncollected waste..." required></textarea>
+            <label for="resIncDetails">Incident Details</label>
+            <textarea id="resIncDetails" placeholder="Provide details (e.g. Overflowing bin, uncollected waste for 3 days)..." required minlength="10"></textarea>
+            <span class="error-msg" id="err-resIncDetails">Incident details must be at least 10 characters long.</span>
           </div>
           <button type="submit" class="btn-primary">Submit Incident Report</button>
         </form>
@@ -482,14 +519,23 @@
 
       <div id="resFeedback" class="view-panel">
         <h3>Submit Service Feedback</h3>
-        <form id="feedbackForm" class="sub-card">
+        <form id="feedbackForm" class="sub-card" novalidate>
           <div class="form-group">
-            <label>Rating (1-5)</label>
-            <select id="fbRating"><option>5 - Excellent</option><option>4 - Good</option><option>3 - Average</option></select>
+            <label for="fbRating">Rating (1-5)</label>
+            <select id="fbRating" required>
+              <option value="" disabled selected>Select Rating</option>
+              <option value="5">5 - Excellent</option>
+              <option value="4">4 - Good</option>
+              <option value="3">3 - Average</option>
+              <option value="2">2 - Below Average</option>
+              <option value="1">1 - Poor</option>
+            </select>
+            <span class="error-msg" id="err-fbRating">Please select a feedback rating.</span>
           </div>
           <div class="form-group">
-            <label>Comments</label>
-            <textarea id="fbComment" placeholder="Collection was on time..."></textarea>
+            <label for="fbComment">Comments</label>
+            <textarea id="fbComment" placeholder="Collection was on time and thorough..." required minlength="5"></textarea>
+            <span class="error-msg" id="err-fbComment">Comments must be at least 5 characters.</span>
           </div>
           <button type="submit" class="btn-primary">Send Feedback</button>
         </form>
@@ -585,17 +631,20 @@
 
       <div id="crewSegreg" class="view-panel">
         <h3>Segregation Compliance Check</h3>
-        <form id="crewSegForm" class="sub-card">
+        <form id="crewSegForm" class="sub-card" novalidate>
           <div class="form-group">
-            <label>Household / Location Tag</label>
-            <input type="text" id="segLoc" placeholder="e.g., Household #402" required />
+            <label for="segLoc">Household / Location Tag</label>
+            <input type="text" id="segLoc" placeholder="e.g., Household #402" required minlength="3" />
+            <span class="error-msg" id="err-segLoc">Please provide a household or location tag (min 3 chars).</span>
           </div>
           <div class="form-group">
-            <label>Compliance Status</label>
-            <select id="segStatus">
+            <label for="segStatus">Compliance Status</label>
+            <select id="segStatus" required>
+              <option value="" disabled selected>Select Status</option>
               <option value="Compliant">Fully Compliant</option>
               <option value="Non-Compliant">Non-Compliant (Mixed Waste)</option>
             </select>
+            <span class="error-msg" id="err-segStatus">Select a compliance status option.</span>
           </div>
           <button type="submit" class="btn-primary">Log Compliance Check</button>
         </form>
@@ -603,15 +652,17 @@
 
       <div id="crewDisposal" class="view-panel">
         <h3>Manage Disposal Data & Submit Report</h3>
-        <form id="disposalForm" class="sub-card">
+        <form id="disposalForm" class="sub-card" novalidate>
           <div class="form-row">
             <div class="form-group">
-              <label>Transported Weight (kg)</label>
-              <input type="number" id="dispWeight" placeholder="450" required />
+              <label for="dispWeight">Transported Weight (kg)</label>
+              <input type="number" id="dispWeight" placeholder="e.g. 450" required min="1" max="50000" step="0.1" />
+              <span class="error-msg" id="err-dispWeight">Weight must be a positive number between 1 and 50,000 kg.</span>
             </div>
             <div class="form-group">
-              <label>Disposal Site</label>
-              <input type="text" id="dispSite" placeholder="City Central Facility" required />
+              <label for="dispSite">Disposal Site</label>
+              <input type="text" id="dispSite" placeholder="e.g. City Central Facility" required minlength="3" />
+              <span class="error-msg" id="err-dispSite">Disposal site name is required (min 3 chars).</span>
             </div>
           </div>
           <button type="submit" class="btn-primary">Submit Disposal Report</button>
@@ -691,41 +742,13 @@
     showRegister.addEventListener('click', () => {
       loginSection.classList.remove('active');
       registerSection.classList.add('active');
+      resetFormValidation(document.getElementById('registerForm'));
     });
 
     showLogin.addEventListener('click', () => {
       registerSection.classList.remove('active');
       loginSection.classList.add('active');
-    });
-
-    document.getElementById('loginForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const role = document.getElementById('loginRole').value;
-      const user = document.getElementById('loginUser').value;
-
-      document.querySelectorAll('.displayUser').forEach(el => el.textContent = user);
-      loginSection.classList.remove('active');
-
-      if (role === 'resident') {
-        residentArea.classList.add('active');
-      } else if (role === 'admin') {
-        adminArea.classList.add('active');
-        initAdminChart();
-      } else if (role === 'crew') {
-        crewArea.classList.add('active');
-      } else if (role === 'facilitator') {
-        facilitatorArea.classList.add('active');
-      }
-      
-      document.getElementById('loginForm').reset();
-    });
-
-    document.getElementById('registerForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      alert('Registration data saved to system directory! Please sign in.');
-      registerSection.classList.remove('active');
-      loginSection.classList.add('active');
-      document.getElementById('registerForm').reset();
+      resetFormValidation(document.getElementById('loginForm'));
     });
 
     logoutBtns.forEach(btn => {
@@ -747,8 +770,128 @@
       }
     }
 
+    function validateField(input) {
+      const errorMsgEl = document.getElementById(`err-${input.id}`);
+      let isValid = true;
+
+      if (input.hasAttribute('required') && !input.value.trim()) {
+        isValid = false;
+      } else if (input.value.trim() !== '') {
+        if (input.hasAttribute('minlength') && input.value.trim().length < parseInt(input.getAttribute('minlength'))) {
+          isValid = false;
+        }
+        if (input.hasAttribute('pattern')) {
+          const patternRegex = new RegExp(`^${input.getAttribute('pattern')}\$`);
+          if (!patternRegex.test(input.value.trim())) {
+            isValid = false;
+          }
+        }
+        if (input.type === 'number') {
+          const val = parseFloat(input.value);
+          const min = input.hasAttribute('min') ? parseFloat(input.getAttribute('min')) : -Infinity;
+          const max = input.hasAttribute('max') ? parseFloat(input.getAttribute('max')) : Infinity;
+          if (isNaN(val) || val < min || val > max) {
+            isValid = false;
+          }
+        }
+      }
+
+      if (!isValid) {
+        input.classList.add('invalid');
+        input.classList.remove('valid');
+        if (errorMsgEl) errorMsgEl.classList.add('visible');
+      } else {
+        input.classList.remove('invalid');
+        if (input.value.trim() !== '') {
+          input.classList.add('valid');
+        } else {
+          input.classList.remove('valid');
+        }
+        if (errorMsgEl) errorMsgEl.classList.remove('visible');
+      }
+
+      return isValid;
+    }
+
+    function validateForm(form) {
+      const inputs = form.querySelectorAll('input, select, textarea');
+      let formIsValid = true;
+
+      inputs.forEach(input => {
+        const isFieldValid = validateField(input);
+        if (!isFieldValid) formIsValid = false;
+      });
+
+      return formIsValid;
+    }
+
+    function resetFormValidation(form) {
+      form.reset();
+      form.querySelectorAll('input, select, textarea').forEach(input => {
+        input.classList.remove('invalid', 'valid');
+      });
+      form.querySelectorAll('.error-msg').forEach(msg => {
+        msg.classList.remove('visible');
+      });
+    }
+
+    document.querySelectorAll('form').forEach(form => {
+      form.querySelectorAll('input, select, textarea').forEach(input => {
+        input.addEventListener('input', () => validateField(input));
+        input.addEventListener('blur', () => validateField(input));
+      });
+    });
+
+    document.getElementById('loginForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const form = e.target;
+
+      if (!validateForm(form)) {
+        return;
+      }
+
+      const role = document.getElementById('loginRole').value;
+      const user = document.getElementById('loginUser').value;
+
+      document.querySelectorAll('.displayUser').forEach(el => el.textContent = user);
+      loginSection.classList.remove('active');
+
+      if (role === 'resident') {
+        residentArea.classList.add('active');
+      } else if (role === 'admin') {
+        adminArea.classList.add('active');
+        initAdminChart();
+      } else if (role === 'crew') {
+        crewArea.classList.add('active');
+      } else if (role === 'facilitator') {
+        facilitatorArea.classList.add('active');
+      }
+
+      resetFormValidation(form);
+    });
+
+    document.getElementById('registerForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const form = e.target;
+
+      if (!validateForm(form)) {
+        return;
+      }
+
+      alert('Registration data validated and saved to system directory! Please sign in.');
+      registerSection.classList.remove('active');
+      loginSection.classList.add('active');
+      resetFormValidation(form);
+    });
+
     document.getElementById('resReportForm').addEventListener('submit', (e) => {
       e.preventDefault();
+      const form = e.target;
+
+      if (!validateForm(form)) {
+        return;
+      }
+
       const loc = document.getElementById('resIncLoc').value;
       const details = document.getElementById('resIncDetails').value;
       const repId = `REP-${repCounter++}`;
@@ -766,7 +909,7 @@
       admRow.innerHTML = `<td>${repId}</td><td>${user}</td><td>${loc}</td><td>${details}</td><td class="status-cell"><span class="badge badge-warning">Under Review</span></td><td><button class="btn-action" onclick="resolveAdminReport('${repId}')">Resolve</button></td>`;
       admBody.prepend(admRow);
 
-      document.getElementById('resReportForm').reset();
+      resetFormValidation(form);
       alert(`Incident Report ${repId} submitted successfully!`);
     });
 
@@ -783,6 +926,12 @@
 
     document.getElementById('disposalForm').addEventListener('submit', (e) => {
       e.preventDefault();
+      const form = e.target;
+
+      if (!validateForm(form)) {
+        return;
+      }
+
       const weight = document.getElementById('dispWeight').value;
       const site = document.getElementById('dispSite').value;
       const crewUser = document.querySelector('#crewArea .displayUser').textContent;
@@ -792,20 +941,32 @@
       row.innerHTML = `<td>${crewUser}</td><td>${site}</td><td>${weight} kg</td><td>Aug 30, 2026</td>`;
       facBody.prepend(row);
 
-      document.getElementById('disposalForm').reset();
+      resetFormValidation(form);
       alert('Disposal Data & Transported Weight Logged Successfully!');
     });
 
     document.getElementById('feedbackForm').addEventListener('submit', (e) => {
       e.preventDefault();
+      const form = e.target;
+
+      if (!validateForm(form)) {
+        return;
+      }
+
       alert('Feedback successfully submitted to Admin and City Facilitator dashboard!');
-      document.getElementById('feedbackForm').reset();
+      resetFormValidation(form);
     });
 
     document.getElementById('crewSegForm').addEventListener('submit', (e) => {
       e.preventDefault();
+      const form = e.target;
+
+      if (!validateForm(form)) {
+        return;
+      }
+
       alert('Segregation Compliance log recorded!');
-      document.getElementById('crewSegForm').reset();
+      resetFormValidation(form);
     });
 
     function initAdminChart() {
